@@ -15,6 +15,9 @@
 	var/list/owned_units = list()
 	var/list/selected_units = list()	//All units 'selected' are relayed a set of instructions.
 	var/list/parties = list()			//A party is a saved group of units that can be selected at any time.
+	var/area/marked_area = null
+	var/mob/marked_mob = null
+	var/atom/marked_atom = null
 
 	var/list/captured_areas = list()
 
@@ -26,16 +29,9 @@
 								/area/shuttle/arrival,		//No camping arrivals.
 								/area/shuttle/cryo,			//Humans get banned if they do this, so we won't do it as well.
 								/area/shuttle/escape,		//Only the worst humans dare attack on the escape shuttle.
-								/area/hallway/escape,		//As well as camping the escape hallway.
-								/area/hallway/entry,		//Lots of arrivals areas :(
-								/area/shuttle/escape_pod1,  //Perfect example of subclassing needed.
-								/area/shuttle/escape_pod2,
-								/area/shuttle/escape_pod3,
-								/area/shuttle/escape_pod4,
-								/area/shuttle/escape_pod5,
-								/area/shuttle/escape_pod3,
-								/area/shuttle/large_escape_pod1,
-								/area/shuttle/large_escape_pod1
+//								/area/hallway/escape,		//As well as camping the escape hallway.
+//								/area/hallway/entry,		//Lots of arrivals areas :(
+								/area/shuttle
 								)
 
 	var/list/hostile_mobs = list()		//A list of all mobs that have ever attacked a unit.
@@ -44,6 +40,7 @@
 	var/campaign = null
 	var/strategy = null
 	var/task	 = null
+	var/busy	 = 0
 
 /mob/commander/swarm/New()
 	ai_commanders.Add(src)
@@ -93,6 +90,35 @@
 /mob/commander/swarm/Process_Spacemove(var/check_drift = 0)
 	return 1
 
+/mob/commander/swarm/proc/handle_ai()
+	if(client || busy)
+		return 0
+	busy = 1
+	if(captured_areas.len == 0)
+		if(check_for_idle_units())
+			ai_invade()
+	else
+		if(check_for_idle_units())
+			ai_expand_borders()
+	busy = 0
+
+/mob/commander/swarm/Life()
+	..()
+	handle_ai()
+	sleep(20)
+
+
+
+/mob/verb/make_swarm()
+	set name = "Make Swarm"
+	set desc = "Quickly sets up a Swarm."
+	set category = "Testing"
+	set src = usr
+
+	var/mob/commander/swarm/S = new /mob/commander/swarm(src.loc)
+	S.key = src.key
+	new /mob/living/artificial/swarm/invader(S.loc)
+
 /mob/commander/swarm/verb/select_unit()
 	set name = "Select Unit"
 	set desc = "Selects a specific unit."
@@ -108,7 +134,7 @@
 			src.selected_units.Add(M)
 			src << "You select [M]."
 
-/mob/commander/swarm/verb/unselect()
+/mob/commander/swarm/verb/deselect()
 	set name = "Unselect"
 	set desc = "Unselects all units."
 	set category = "Commander"
@@ -125,7 +151,7 @@
 	var/mob/living/artificial/swarm/M
 	for(M in src.selected_units)
 		spawn(1)
-			M.calculate_path()
+			M.calculate_path(marked_atom)
 			M.walk_path()
 
 /mob/commander/swarm/verb/traverse_unit()
@@ -137,7 +163,9 @@
 	var/mob/living/artificial/swarm/M
 	for(M in src.selected_units)
 		spawn(1)
-			M.walk_loop()
+			M.add_to_queue("calculate_path",marked_atom)
+			M.add_to_queue("walk_loop",marked_atom)
+//			M.walk_loop()
 
 /mob/commander/swarm/verb/move_reset_unit()
 	set name = "Move Reset Units"
@@ -148,7 +176,7 @@
 	var/mob/living/artificial/swarm/M
 	for(M in src.selected_units)
 		M.walk_reset()
-
+/*
 /mob/commander/swarm/verb/mark_target_loc()
 	set name = "Mark Target Location"
 	set desc = "Designates a target for your units to walk to."
@@ -159,6 +187,14 @@
 	for(M in src.selected_units)
 		M.target_loc = src.loc
 		src << "Units given new target location."
+*/
+/mob/commander/swarm/verb/mark_target_loc()
+	set name = "Mark Atom"
+	set desc = "Designates a atom to use later."
+	set category = "Commander"
+	set src = usr
+
+	marked_atom = get_turf(src)
 
 /mob/commander/swarm/verb/make_party()
 	set name = "Make Party"
@@ -196,12 +232,17 @@
 	set category = "Commander"
 	set src = usr
 
+	world << "capture_area called by [src]."
+
 	var/mob/living/artificial/swarm/M
 	for(M in src.selected_units)
-		if(get_area(M) == get_area(src))
-			say("Capturing [get_area(src)].")
-			M.capture_area()
-			break
+		if(get_area(M) != get_area(src))
+			mark_target_loc()
+			traverse_unit()
+		say("Capturing [get_area(src)].")
+//		M.capture_area()
+		M.add_to_queue("capture_area")
+		break
 
 /mob/commander/swarm/verb/find_nearby_area()
 	set name = "Find Nearby Area"
@@ -230,7 +271,7 @@
 					break //Welp, try again.
 				found_area = new_area
 				break //We found one!
-			sleep(5)
+			sleep(1)
 		if(!found_area)
 			loc = old_loc //If we didn't find anything, try again where we started, but in another direction.
 		sleep(5)
@@ -256,28 +297,136 @@
 	set category = "Commander"
 	set src = usr
 
+	var/turf/new_turf = null
 	if(A) //Targeted area was supplied already, meaning the AI is using this verb.
-		src.loc = pick(get_area_turfs(A))
+		while(!new_turf)
+			var/turf/T = pick(get_area_turfs(A))
+			if(!T.get_density()) //Don't want to jump into a wall.
+				new_turf = T
+				break
+		src.loc = new_turf
 	else if(client && !A) //If not, a human is, so we can ask where they want to go.
 		input(src,"Choose an area to jump to.","Teleporting") as anything in return_sorted_areas()
 		if(A)
-			src.loc = pick(get_area_turfs(A))
+			while(!new_turf)
+				var/turf/T = pick(get_area_turfs(A))
+				if(!T.get_density())
+					new_turf = T
+					break
+			src.loc = new_turf
 
-/*
-/client/proc/Jump(var/area/A in return_sorted_areas())
-	set name = "Jump to Area"
-	set desc = "Area to jump to"
-	set category = "Admin"
-	if(!check_rights(R_ADMIN|R_MOD|R_DEBUG))
-		return
+/turf/proc/get_density() //Checks for walls and dense objects on top, like tables.
+	if(density)
+		return 1
+	for(var/obj/O in contents)
+		if(O.density == 1)
+			return 1
+	return 0
 
-	if(config.allow_admin_jump)
-		usr.on_mob_jump()
-		usr.loc = pick(get_area_turfs(A))
+/mob/commander/swarm/verb/jump_to_current_area()
+	set name = "Jump To Current Area"
+	set desc = "Jump to a random spot in the current area."
+	set category = "Commander"
+	set src = usr
 
-		log_admin("[key_name(usr)] jumped to [A]")
-		message_admins("[key_name_admin(usr)] jumped to [A]", 1)
-		feedback_add_details("admin_verb","JA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+	jump_to_area(get_area(src))
+
+/mob/commander/swarm/verb/pick_idle_unit()
+	set name = "Pick Idle Unit"
+	set desc = "Picks a unit that's not currently anything."
+	set category = "Commander"
+	set src = usr
+
+	//First, check if we even have anyone to do anything.
+	if(owned_units.len == 0)
+		message_admins("AI Error: No owned units to command.")
+		return 0
+
+	for(var/mob/living/artificial/swarm/S in owned_units)
+		if(S.task != 0)
+			continue
+		else
+			return S
+
+/mob/commander/swarm/proc/check_for_idle_units()
+	if(owned_units.len == 0)
+		message_admins("AI Error: No owned units to command.")
+		return 0
+
+	for(var/mob/living/artificial/swarm/S in owned_units)
+		if(S.task == 0)
+			return 1
+	return 0
+
+
+
+/mob/commander/swarm/verb/ai_invade()
+	set name = "Invade"
+	set desc = "Invade a room."
+	set category = "Commander AI"
+	set src = usr
+
+	selected_units.Add(pick_idle_unit())
+
+	if(selected_units.len == 0)
+		return 0
+
+	//Jump to our new selected unit.
+	jump_to_selected()
+
+	//Then check if we don't own the area.
+	if(!(get_area(src) in captured_areas))
+		//If we don't, change that.
+		capture_area()
+
 	else
-		alert("Admin jumping disabled")
-*/
+		var/success = 0
+		//Keep trying until we succeed.
+		while(!success)
+			//Jump in a random area in the current area, in case we just happen to be in a bad spot.
+			jump_to_current_area()
+			//Now explore for new areas to invade.
+			var/new_area = find_nearby_area()
+			//Now check if we don't already own it.
+			if(new_area)
+				if(!(new_area in captured_areas))
+					success = 1
+					break
+		//Most likely, we found the new area while in a wall, so let's fix that.
+		jump_to_current_area()
+		mark_target_loc()
+		traverse_unit()
+
+/mob/commander/swarm/verb/ai_expand_borders()
+	set name = "Expand Borders"
+	set desc = "Invade a room."
+	set category = "Commander AI"
+	set src = usr
+
+	selected_units.Add(pick_idle_unit())
+
+	if(selected_units.len == 0)
+		return 0
+
+	//Jump to our new selected unit.
+	jump_to_area(pick(captured_areas))
+
+	var/success = 0
+	//Keep trying until we succeed.
+	while(!success)
+		//Jump in a random area in the current area, in case we just happen to be in a bad spot.
+		jump_to_current_area()
+		//Now explore for new areas to invade.
+		var/new_area = find_nearby_area()
+		//Now check if we don't already own it.
+		if(new_area)
+			if(!(new_area in captured_areas))
+				success = 1
+				break
+	//Most likely, we found the new area while in a wall, so let's fix that.
+	jump_to_current_area()
+	mark_target_loc()
+	traverse_unit()
+	capture_area()
+	deselect()
+
