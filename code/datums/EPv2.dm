@@ -30,6 +30,9 @@ The receiving atom will receive the origin atom (the atom that sent the message)
 It's suggested to start with an if or switch statement for the message, to determine what to do.
 */
 
+/atom/movable/
+	var/datum/exonet_protocol/exonet = null
+
 var/global/list/all_exonet_connections = list()
 
 /datum/exonet_protocol
@@ -40,6 +43,21 @@ var/global/list/all_exonet_connections = list()
 	src.holder = holder
 	..()
 
+/datum/exonet_protocol/Destroy()
+	for(var/datum/exonet_session/ES in current_sessions)
+		qdel(ES) // Kick everyone off, because we're not gonna exist shortly.
+	..()
+
+/datum/exonet_protocol/proc/get_exonet_datum(var/target_address)
+	for(var/datum/exonet_protocol/exonet in all_exonet_connections)
+		if(exonet.address == target_address)
+			return exonet
+
+/datum/exonet_protocol/proc/can_transmit()
+	var/obj/machinery/exonet_node/node = get_exonet_node()
+	if(!node) // Telecomms went boom, ion storm, etc.
+		return FALSE
+	return TRUE
 
 // Proc: make_address()
 // Parameters: 1 (string - used to make into a hash that will be part of the new address)
@@ -112,18 +130,18 @@ var/global/list/all_exonet_connections = list()
 	return null
 
 // Proc: send_message()
-// Parameters: 3 (target_address - the desired address to send the message to, data_type - text stating what the content is meant to be used for,
-// 		content - the actual 'message' being sent to the address)
+// Parameters: 4 (target_address - the desired address to send the message to, data_type - text stating what the content is meant to be used for,
+// 		content - the actual 'message' being sent to the address, encrypted - determines if any meaningful logs are left on the node)
 // Description: Sends the message to target_address, by calling receive_message() on the desired datum.  Returns true if the message is recieved.
-/datum/exonet_protocol/proc/send_message(var/target_address, var/data_type, var/content)
+/datum/exonet_protocol/proc/send_message(var/target_address, var/data_type, var/content, var/encrypted = FALSE)
 	if(!address)
 		return FALSE
-	var/obj/machinery/exonet_node/node = get_exonet_node()
-	if(!node) // Telecomms went boom, ion storm, etc.
+	if(!can_transmit())
 		return FALSE
 	for(var/datum/exonet_protocol/exonet in all_exonet_connections)
 		if(exonet.address == target_address)
-			node.write_log(src.address, target_address, data_type, content)
+			var/obj/machinery/exonet_node/node = get_exonet_node()
+			node.write_log(src.address, target_address, data_type, content, encrypted)
 			return exonet.receive_message(holder, address, data_type, content)
 
 // Proc: receive_message()
@@ -136,6 +154,15 @@ var/global/list/all_exonet_connections = list()
 
 // Proc: receive_exonet_message()
 // Parameters: 3 (origin_atom - the origin datum's holder, origin_address - the address the message originated from, message - the message that was sent)
-// Description: Override this to make your atom do something when a message is received.
-/atom/proc/receive_exonet_message(var/atom/origin_atom, var/origin_address, var/message, var/text)
-	return
+// Description: Override this to make your atom do something when a message is received.  If you want your atom to reply to
+// pings, call ..() somewhere.
+/atom/movable/proc/receive_exonet_message(var/atom/origin_atom, var/origin_address, var/message, var/text)
+	if(message == "ping")
+		var/random = 0
+		if(origin_atom == src)
+			random = 1
+		else
+			random = rand(100,250)
+			random = random / 10
+		sleep(round(random, 1)) // For the realisms.
+		exonet.send_message(origin_address, "message", "64 bytes received from [exonet.address] ecmp_seq=0 ttl=51 time=[random] ms")

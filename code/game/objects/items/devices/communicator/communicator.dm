@@ -51,7 +51,6 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 	var/network_visibility = 1
 	var/ringer = 1
 	var/list/known_devices = list()
-	var/datum/exonet_protocol/exonet = null
 	var/list/communicating = list()
 	var/update_ticks = 0
 
@@ -221,7 +220,6 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 	..()
 
 /mob/observer/dead
-	var/datum/exonet_protocol/exonet = null
 	var/list/exonet_messages = list()
 
 // Proc: New()

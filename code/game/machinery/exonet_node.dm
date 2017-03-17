@@ -179,11 +179,11 @@
 			return E
 
 // Proc: write_log()
-// Parameters: 4 (origin_address - Where the message is from, target_address - Where the message is going, data_type - Instructions on how to interpet content,
-// 		content - The actual message.
+// Parameters: 5 (origin_address - Where the message is from, target_address - Where the message is going, data_type - Instructions on how to interpet content,
+// 		content - The actual message, encrypted - If true, logging won't show a whole lot.
 // Description: This writes to the logs list, so that people can see what people are doing on the Exonet ingame.  Note that this is not an admin logging function.
 // 		Communicators are already logged seperately.
-/obj/machinery/exonet_node/proc/write_log(var/origin_address, var/target_address, var/data_type, var/content)
+/obj/machinery/exonet_node/proc/write_log(var/origin_address, var/target_address, var/data_type, var/content, var/encrypted)
 	//var/timestamp = time2text(station_time_in_ticks, "hh:mm:ss")
 	var/timestamp = "[stationdate2text()] [stationtime2text()]"
 	var/msg = "[timestamp] | FROM [origin_address] TO [target_address] | TYPE: [data_type] | CONTENT: [content]"

@@ -194,6 +194,10 @@
 	if((hacker) && (hacker.hacked_apcs) && (src in hacker.hacked_apcs))
 		hacker.hacked_apcs -= src
 
+	if(exonet)
+		exonet.remove_address()
+		qdel(exonet)
+
 	return ..()
 
 /obj/machinery/power/apc/proc/energy_fail(var/duration)
@@ -226,6 +230,10 @@
 	update_icon()
 
 	make_terminal()
+
+	exonet = new(src)
+	exonet.make_address("apc-[name]")
+	exonet.make_account(EXONET_SESSION_ADMIN, "abcdef")
 
 	spawn(5)
 		src.update()
@@ -1326,5 +1334,70 @@ obj/machinery/power/apc/proc/autoset(var/cur_state, var/on)
 	spawn(15 MINUTES) // Protection against someone deconning the grid checker after a grid check happens, preventing infinte blackout.
 		if(src && grid_check == TRUE)
 			grid_check = FALSE
+
+/obj/machinery/power/apc/receive_exonet_message(var/atom/origin_atom, origin_address, message, text)
+	if(stat & (BROKEN|MAINT)) // Broken machines can't talk.
+		return
+
+	if(aidisabled) // Assume the AI control wire is for remote interaction in general and not specifically for the AI.
+		return
+
+	if(message == "status")
+		var/reply = null
+		reply += "Name: [name]<br>"
+		if(!cell)
+			reply += "ERROR: NO CELL DETECTED<br>"
+		else
+			reply += "Charge: [cell.charge]/[cell.maxcharge] ([ (cell.charge / cell.maxcharge) * 100 ]%)<br>"
+		reply += "Equip: "
+		switch(equipment) // Fuck this copypasta.
+			if(1)
+				reply += "Off"
+			if(2)
+				reply += "On"
+			if(3)
+				reply += "Auto"
+		reply += "<br>"
+
+		reply += "Light: "
+		switch(lighting)
+			if(1)
+				reply += "Off"
+			if(2)
+				reply += "On"
+			if(3)
+				reply += "Auto"
+		reply += "<br>"
+
+		reply += "Environ: "
+		switch(environ)
+			if(1)
+				reply += "Off"
+			if(2)
+				reply += "On"
+			if(3)
+				reply += "Auto"
+		reply += "<br>"
+
+		reply += "Total Load: [round(lastused_total)]W<br>"
+
+		exonet.send_message(origin_address, "message", "[reply]")
+
+	if(message == "scan")
+		var/area/A = src.area
+		var/i = 0
+		exonet.send_message(origin_address, "message", "Scanning local network...")
+		for(var/atom/movable/AM in A)
+			if(AM.exonet)
+				var/N = AM.name
+				if(findtext(N, "ÿ")) // \improper can cause weirdness in UIs.
+					N = copytext(N, 3)
+				exonet.send_message(origin_address, "message", "[N] - [AM.exonet.address]")
+			i++
+			if(i % 20 == 0)
+				sleep(1) // Take a breather.
+		exonet.send_message(origin_address, "message", "Scan complete.")
+
+	..()
 
 #undef APC_UPDATE_ICON_COOLDOWN
