@@ -67,7 +67,7 @@
 		if(PARALYZE)
 			Paralyse(effect * blocked)
 		if(AGONY)
-			halloss += max((effect * blocked), 0) // Useful for objects that cause "subdual" damage. PAIN!
+			adjustHalLoss(effect * blocked) // Useful for objects that cause "subdual" damage. PAIN!
 		if(IRRADIATE)
 		/*
 			var/rad_protection = check_protection ? getarmor(null, "rad")/100 : 0

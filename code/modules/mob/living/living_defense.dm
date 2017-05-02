@@ -127,6 +127,13 @@
 
 	if(!P.nodamage)
 		apply_damage(P.damage, P.damage_type, def_zone, absorb, soaked, 0, P, sharp=proj_sharp, edge=proj_edge)
+		if(istype(P, /obj/item/projectile/bullet)) // Bullets really hurt when they hit you.
+			if(P.check_armour != "melee") // Bullets stopped by melee are probably rubbers, which don't need to do even more agony damage.
+				var/agony_amount = P.damage
+				agony_amount = max(agony_amount - soaked, 0)
+				agony_amount = max(agony_amount * (abs( (absorb / 100) - 1) ), 0)
+				if(agony_amount) // Armor reduces the agony.
+					apply_effect(agony_amount, AGONY)
 	P.on_hit(src, absorb, soaked, def_zone)
 
 	if(absorb == 100)
