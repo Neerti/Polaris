@@ -196,3 +196,6 @@
 #define TSC_MORPH	"Morpheus"
 #define TSC_XION	"Xion" // Not really needed but consistancy I guess.
 #define TSC_GIL 	"Gilthari"
+#define TSC_AETHER	"Aether Atmospherics & Recycling"
+#define TSC_FOCAL	"Focal Point Energistics"
+#define TSC_GRAYSON	"Grayson Manufactories"

@@ -109,6 +109,8 @@ var/global/economy_init = 0
 	for(var/obj/machinery/cash_register/CR in transaction_devices)
 		if(CR.account_to_connect)
 			CR.linked_account = department_accounts[CR.account_to_connect]
+	for(var/obj/machinery/computer/trade/T in transaction_devices)
+		T.cargo_account = department_accounts["Cargo"]
 
 	current_date_string = "[num2text(rand(1,31))] [pick("January","February","March","April","May","June","July","August","September","October","November","December")], [game_year]"
 
