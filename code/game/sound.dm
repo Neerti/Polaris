@@ -81,7 +81,8 @@ var/list/can_sound = list('sound/effects/can_open1.ogg','sound/effects/can_open2
 var/const/FALLOFF_SOUNDS = 0.5
 
 /mob/proc/playsound_local(var/turf/turf_source, soundin, vol as num, vary, frequency, falloff, is_global)
-	if(!src.client || ear_deaf > 0)	return
+	if(!src.client || ear_deaf > 0)
+		return FALSE
 	soundin = get_sfx(soundin)
 
 	var/sound/S = sound(soundin)
@@ -124,7 +125,7 @@ var/const/FALLOFF_SOUNDS = 0.5
 		S.volume *= pressure_factor
 
 		if (S.volume <= 0)
-			return	//no volume means no sound
+			return FALSE//no volume means no sound
 
 		var/dx = turf_source.x - T.x // Hearing from the right/left
 		S.x = dx
@@ -161,6 +162,7 @@ var/const/FALLOFF_SOUNDS = 0.5
 			S.environment = A.sound_env
 
 	src << S
+	return TRUE
 
 /client/proc/playtitlemusic()
 	if(!ticker || !ticker.login_music)	return

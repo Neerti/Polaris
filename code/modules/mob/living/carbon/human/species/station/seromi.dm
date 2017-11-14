@@ -54,6 +54,9 @@
 	swap_flags = MONKEY|SLIME|SIMPLE_ANIMAL
 	push_flags = MONKEY|SLIME|SIMPLE_ANIMAL|ALIEN
 
+	vision_flags = SEE_SELF|SEE_TURFS // SEE_TURF is needed for sound vision to work properly across walls.
+	darksight = 8 // For sound-vision.  It doesn't act like nightvision anyways.
+
 	cold_level_1 = 180	//Default 260
 	cold_level_2 = 130	//Default 200
 	cold_level_3 = 70	//Default 120
