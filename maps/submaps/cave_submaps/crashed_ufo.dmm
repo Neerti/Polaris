@@ -1,0 +1,113 @@
+"aa" = (/turf/space,/area/space)
+"ab" = (/obj/structure/girder,/turf/simulated/floor/airless,/area/wreck/main)
+"ac" = (/turf/simulated/wall/skipjack,/area/wreck/main)
+"ad" = (/turf/simulated/floor/airless,/area/wreck/main)
+"ae" = (/obj/item/stack/rods,/turf/simulated/floor/airless,/area/wreck/main)
+"af" = (/obj/item/stack/material/steel,/turf/simulated/floor/airless,/area/wreck/main)
+"ag" = (/obj/structure/table/steel_reinforced,/obj/item/weapon/reagent_containers/syringe/antiviral,/obj/item/stack/rods,/turf/simulated/floor/airless,/area/wreck/main)
+"ah" = (/obj/structure/table/steel_reinforced,/obj/item/weapon/surgical/scalpel/laser3,/turf/simulated/floor/tiled/airless,/area/wreck/main)
+"ai" = (/obj/structure/frame/computer,/turf/simulated/floor/tiled/airless,/area/wreck/main)
+"aj" = (/obj/structure/table/steel_reinforced,/turf/simulated/floor/tiled/airless,/area/wreck/main)
+"ak" = (/obj/structure/table/steel_reinforced,/turf/simulated/floor/airless,/area/wreck/main)
+"al" = (/obj/effect/decal/mecha_wreckage/phazon,/turf/simulated/floor/airless,/area/wreck/main)
+"am" = (/obj/item/weapon/ore,/turf/simulated/floor/airless,/area/wreck/main)
+"an" = (/obj/machinery/door/airlock/hatch,/turf/simulated/floor/airless,/area/wreck/main)
+"ao" = (/obj/item/weapon/surgical/circular_saw,/turf/simulated/floor/tiled/airless,/area/wreck/main)
+"ap" = (/turf/simulated/floor/tiled/white/airless,/area/wreck/main)
+"aq" = (/obj/structure/bed/chair{dir = 1},/turf/simulated/floor/tiled/white/airless,/area/wreck/main)
+"ar" = (/turf/simulated/floor/tiled/airless,/area/wreck/main)
+"as" = (/obj/effect/decal/mecha_wreckage/gygax/dark,/turf/simulated/floor/airless,/area/wreck/main)
+"at" = (/obj/item/weapon/storage/toolbox/mechanical,/turf/simulated/floor/airless,/area/wreck/main)
+"au" = (/obj/structure/table/rack,/turf/simulated/floor/airless,/area/wreck/main)
+"av" = (/obj/structure/table/rack,/obj/item/stack/cable_coil/yellow,/turf/simulated/floor/airless,/area/wreck/main)
+"aw" = (/obj/effect/decal/cleanable/blood/gibs/robot/down,/turf/simulated/floor/airless,/area/wreck/main)
+"ax" = (/obj/machinery/optable,/obj/effect/decal/remains/xeno,/obj/effect/decal/cleanable/blood/xeno,/turf/simulated/floor/tiled/white/airless,/area/wreck/main)
+"ay" = (/obj/item/weapon/material/shard/shrapnel,/turf/simulated/floor/airless,/area/wreck/main)
+"az" = (/obj/structure/table/rack,/turf/simulated/floor/tiled/airless,/area/wreck/main)
+"aA" = (/obj/effect/decal/cleanable/blood/xeno,/turf/simulated/floor/tiled/white/airless,/area/wreck/main)
+"aB" = (/obj/item/weapon/ore,/obj/item/stack/rods,/turf/simulated/floor/airless,/area/wreck/main)
+"aC" = (/obj/machinery/door/airlock/hatch,/turf/simulated/floor/tiled/white/airless,/area/wreck/main)
+"aD" = (/obj/effect/overlay/wallrot,/turf/simulated/wall/skipjack,/area/wreck/main)
+"aE" = (/obj/structure/window/phoronreinforced,/turf/simulated/floor/tiled/airless,/area/wreck/main)
+"aF" = (/obj/item/device/flashlight/flare,/turf/simulated/floor/tiled/airless,/area/wreck/main)
+"aG" = (/obj/item/stack/material/wood,/obj/item/stack/material/wood,/obj/structure/ore_box,/obj/item/weapon/ore/iron,/obj/item/weapon/ore/iron,/obj/item/weapon/ore/iron,/turf/simulated/floor/airless,/area/wreck/main)
+"aH" = (/obj/item/clothing/head/helmet/space/deathsquad,/obj/structure/table/rack,/obj/effect/decal/cleanable/molten_item,/turf/simulated/floor/tiled/airless,/area/wreck/main)
+"aI" = (/obj/machinery/compressor{dir = 4},/obj/structure/window/phoronreinforced,/obj/structure/window/phoronreinforced{tag = "icon-phoronrwindow (WEST)"; icon_state = "phoronrwindow"; dir = 8},/obj/structure/window/phoronreinforced{tag = "icon-phoronrwindow (NORTH)"; icon_state = "phoronrwindow"; dir = 1},/turf/simulated/floor/reinforced/phoron,/area/wreck/main)
+"aJ" = (/obj/machinery/crystal,/obj/structure/window/phoronreinforced{tag = "icon-phoronrwindow (NORTH)"; icon_state = "phoronrwindow"; dir = 1},/obj/structure/window/phoronreinforced{tag = "icon-phoronrwindow (EAST)"; icon_state = "phoronrwindow"; dir = 4},/obj/structure/window/phoronreinforced,/obj/effect/decal/cleanable/liquid_fuel/flamethrower_fuel,/turf/simulated/floor/reinforced/phoron,/area/wreck/main)
+"aK" = (/obj/item/device/gps,/turf/simulated/floor/tiled/airless,/area/wreck/main)
+"aL" = (/obj/structure/ore_box,/turf/simulated/floor/airless,/area/wreck/main)
+"aM" = (/obj/item/weapon/circuitboard/broken,/turf/simulated/floor/tiled/airless,/area/wreck/main)
+"aN" = (/obj/structure/closet/acloset,/turf/simulated/floor/tiled/airless,/area/wreck/main)
+"aO" = (/obj/item/weapon/ore,/turf/simulated/floor/tiled/white/airless,/area/wreck/main)
+"aP" = (/obj/item/clothing/under/color/pink,/obj/structure/table/steel_reinforced,/turf/simulated/floor/tiled/white/airless,/area/wreck/main)
+"aQ" = (/obj/structure/bed,/turf/simulated/floor/tiled/white/airless,/area/wreck/main)
+"aR" = (/obj/effect/wingrille_spawn/phoron,/turf/simulated/floor/tiled/airless,/area/wreck/main)
+"aS" = (/obj/structure/table/rack,/obj/item/weapon/tank/jetpack/void,/obj/item/clothing/suit/space/syndicate/green,/obj/item/clothing/head/helmet/space/syndicate/green,/turf/simulated/floor/tiled/airless,/area/wreck/main)
+"aT" = (/obj/structure/table/rack,/obj/item/weapon/material/shard/shrapnel,/turf/simulated/floor/tiled/airless,/area/wreck/main)
+"aU" = (/obj/item/broken_device,/obj/structure/bed/chair{dir = 8},/obj/effect/decal/remains/robot,/turf/simulated/floor/tiled/airless,/area/wreck/main)
+"aV" = (/obj/effect/decal/cleanable/blood/oil/streak,/turf/simulated/floor/tiled/airless,/area/wreck/main)
+"aW" = (/obj/item/weapon/tank/oxygen/yellow,/turf/simulated/floor/tiled/airless,/area/wreck/main)
+"aX" = (/obj/effect/decal/cleanable/blood/gibs/robot/down,/turf/simulated/floor/tiled/airless,/area/wreck/main)
+"aY" = (/obj/structure/bed/chair/comfy/brown{dir = 8},/turf/simulated/floor/tiled/airless,/area/wreck/main)
+"aZ" = (/obj/effect/decal/cleanable/vomit,/turf/simulated/floor/tiled/airless,/area/wreck/main)
+"ba" = (/obj/structure/AIcore,/turf/simulated/floor/tiled/airless,/area/wreck/main)
+"bb" = (/obj/item/frame/apc,/obj/item/weapon/module/power_control,/obj/item/weapon/material/shard/shrapnel,/turf/simulated/floor/tiled/white/airless,/area/wreck/main)
+"bc" = (/obj/item/device/flashlight/glowstick,/turf/simulated/floor/tiled/airless,/area/wreck/main)
+"bd" = (/obj/machinery/door/airlock/hatch,/turf/simulated/floor/tiled/airless,/area/wreck/main)
+"be" = (/obj/structure/bed/chair{dir = 8},/turf/simulated/floor/tiled/airless,/area/wreck/main)
+"bf" = (/obj/item/robot_parts/head,/turf/simulated/floor/tiled/airless,/area/wreck/main)
+"bg" = (/obj/item/stack/material/steel,/turf/simulated/floor/tiled/airless,/area/wreck/main)
+"bh" = (/obj/structure/table/steel_reinforced,/turf/simulated/floor/tiled/white/airless,/area/wreck/main)
+"bi" = (/obj/item/clothing/under/color/lightblue,/obj/structure/bed,/turf/simulated/floor/tiled/white/airless,/area/wreck/main)
+"bj" = (/obj/item/clothing/under/color/lightpurple,/obj/structure/bed,/turf/simulated/floor/tiled/white/airless,/area/wreck/main)
+"bk" = (/obj/structure/dispenser{oxygentanks = 0; phorontanks = 0},/turf/simulated/floor/tiled/airless,/area/wreck/main)
+"bl" = (/obj/item/stack/material/glass{amount = 50; pixel_x = -2; pixel_y = 2},/turf/simulated/floor/tiled/airless,/area/wreck/main)
+"bm" = (/obj/item/stack/cable_coil/yellow,/turf/simulated/floor/airless,/area/wreck/main)
+"bn" = (/obj/machinery/compressor{dir = 4},/obj/structure/window/phoronreinforced{tag = "icon-phoronrwindow (WEST)"; icon_state = "phoronrwindow"; dir = 8},/obj/structure/window/phoronreinforced,/obj/structure/window/phoronreinforced{tag = "icon-phoronrwindow (NORTH)"; icon_state = "phoronrwindow"; dir = 1},/turf/simulated/floor/reinforced/phoron,/area/wreck/main)
+"bo" = (/obj/machinery/crystal,/obj/structure/window/phoronreinforced,/obj/structure/window/phoronreinforced{tag = "icon-phoronrwindow (EAST)"; icon_state = "phoronrwindow"; dir = 4},/obj/structure/window/phoronreinforced{tag = "icon-phoronrwindow (NORTH)"; icon_state = "phoronrwindow"; dir = 1},/obj/effect/decal/cleanable/liquid_fuel/flamethrower_fuel,/turf/simulated/floor/reinforced/phoron,/area/wreck/main)
+"bp" = (/obj/structure/largecrate,/turf/simulated/floor/airless,/area/wreck/main)
+"bq" = (/obj/effect/decal/cleanable/molten_item,/turf/simulated/floor/airless,/area/wreck/main)
+"br" = (/obj/structure/window/phoronreinforced{tag = "icon-phoronrwindow (NORTH)"; icon_state = "phoronrwindow"; dir = 1},/turf/simulated/floor/tiled/airless,/area/wreck/main)
+"bs" = (/obj/item/stack/material/steel,/obj/item/stack/material/steel,/turf/simulated/floor/tiled/airless,/area/wreck/main)
+"bt" = (/obj/structure/table/rack,/obj/item/clothing/glasses/welding,/turf/simulated/floor/tiled/airless,/area/wreck/main)
+"bu" = (/obj/effect/decal/mecha_wreckage/mauler,/obj/item/weapon/material/shard/shrapnel,/turf/simulated/floor/airless,/area/wreck/main)
+"bv" = (/obj/item/stack/material/steel,/obj/item/stack/rods,/turf/simulated/floor/airless,/area/wreck/main)
+"bw" = (/obj/structure/table/rack,/obj/item/weapon/storage/toolbox/syndicate,/turf/simulated/floor/airless,/area/wreck/main)
+"bx" = (/obj/item/weapon/circuitboard/teleporter,/turf/simulated/floor/tiled/white/airless,/area/wreck/main)
+"by" = (/obj/machinery/teleport/station,/turf/simulated/floor/tiled/airless,/area/wreck/main)
+"bz" = (/obj/machinery/teleport/hub,/turf/simulated/floor/tiled/airless,/area/wreck/main)
+
+(1,1,1) = {"
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaababacacacacadadaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaadaeafabagahaiajakacadadadaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaalamadadadanaoapaqaparanadadadadadaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaasatamauauacapapapapapacavauadadadadaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaawamadacacacapapaxapapacacacadadadadadaaaaaaaaaa
+aaaaaaaaaaaaayadadadacacazacapapaAapapacazacacadadadadaaaaaaaaaa
+aaaaaaaaaaaaaBadadacacararacarapapaparanararacacadadadadaaaaaaaa
+aaaaaaaaaaaaaaafacacarararacacaCaDaraEacaFararacacaGadadadaaaaaa
+aaaaaaaaaaaaaaamacaHarapapapapapacaIaJacaKarararacaLaLadadaaaaaa
+aaaaaaaaacacacacacacarapararararacacacacacacararacacacacacaaaaaa
+aaaaaaaaacakaMaraNacacaCacacapaOapaPaQajaQacarararaRaSaTacaaaaaa
+aaaaaaaaabaiaUaVarararapaiacaparararaparapacarararaRaWaracaaaaaa
+aaaaaaaaabaiaXaraYaZarapbaacbbaracarapapapacarbcarbdararanaaaaaa
+aaaaaaaaacaibebfarararapaiacaparararaparapacarararaRararacaaaaaa
+aaaaaaaaaaaaaebgaNacacaCacacapapapbhbiajbjacarararaRbkaracaaaaaa
+aaaaaaaaaaaaaaaaabacblapararararacacacacacacararacacacacacaaaaaa
+aaaaaaaaaaaaaaaaaabmaeapapapapapacbnboacararararacbpadadadaaaaaa
+aaaaaaaaaaaaaaaaaaaabqararacacaCacbrbracarararacacbpadadadaaaaaa
+aaaaaaaaaaaaaaaaaaaaabararacarapapaparanararacacbpadadadaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaabacbsacapapapapapacbtacacadadadadaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaabuacacacapapapapapacacacadbqadadadaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaabvauauacapapapapapacbwauadadadadaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaadadanarbxapaparanadadadadadaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaebqacakaibybzakacadadadaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaadacacacacacacacadadaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+"}

@@ -10,3 +10,6 @@
 
 /area/submap/cave/qShuttle
 	name = "Quarantined Shuttle"
+
+/area/submap/cave/crashed_ufo
+	name = "Crashed Vessel"
