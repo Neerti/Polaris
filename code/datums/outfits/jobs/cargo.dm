@@ -17,6 +17,10 @@
 	id_type = /obj/item/weapon/card/id/cargo/cargo_tech
 	pda_type = /obj/item/device/pda/cargo
 
+/decl/hierarchy/outfit/job/cargo/cargo_tech/major_bills
+	name = OUTFIT_JOB_NAME("Major Bills contractor")
+	uniform = /obj/item/clothing/under/mbill
+
 /decl/hierarchy/outfit/job/cargo/mining
 	name = OUTFIT_JOB_NAME("Shaft miner")
 	uniform = /obj/item/clothing/under/rank/miner
@@ -26,3 +30,7 @@
 	pda_type = /obj/item/device/pda/shaftminer
 	backpack_contents = list(/obj/item/weapon/crowbar = 1, /obj/item/weapon/storage/bag/ore = 1)
 	flags = OUTFIT_HAS_BACKPACK|OUTFIT_EXTENDED_SURVIVAL
+
+/decl/hierarchy/outfit/job/cargo/mining/grayson
+	name = OUTFIT_JOB_NAME("Grayson Manufactories contractor")
+	uniform = /obj/item/clothing/under/grayson

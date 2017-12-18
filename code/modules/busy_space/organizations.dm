@@ -124,7 +124,7 @@
 
 
 /datum/lore/organization/tsc/hephaestus
-	name = "Hephaestus Industries"
+	name = TSC_HEPH
 	short_name = "Hephaestus"
 	acronym = "HI"
 	desc = "Hephaestus Industries is the largest supplier of arms, ammunition, and small millitary vehicles in Sol space. \
@@ -202,7 +202,7 @@
 		)
 
 /datum/lore/organization/tsc/zeng_hu
-	name = "Zeng-Hu pharmaceuticals"
+	name = TSC_ZH
 	short_name = "Zeng-Hu"
 	acronym = "ZH"
 	desc = "Zeng-Hu is an old TSC, based in the Sol system. Until the discovery of Phoron, Zeng-Hu maintained a stranglehold \
@@ -220,7 +220,7 @@
 	destination_names = list()
 
 /datum/lore/organization/tsc/ward_takahashi
-	name = "Ward-Takahashi General Manufacturing Conglomerate"
+	name = TSC_WT
 	short_name = "Ward-Takahashi"
 	acronym = "WT"
 	desc = "Ward-Takahashi focuses on the sale of small consumer electronics, with its computers, communicators, \
@@ -238,7 +238,7 @@
 	destination_names = list()
 
 /datum/lore/organization/tsc/bishop
-	name = "Bishop Cybernetics"
+	name = TSC_BC
 	short_name = "Bishop"
 	acronym = "BC"
 	desc = "Bishop’s focus is on high-class, stylish cybernetics. A favorite among transhumanists (and a bête noire for \
@@ -256,7 +256,7 @@
 	destination_names = list()
 
 /datum/lore/organization/tsc/morpheus
-	name = "Morpheus Cyberkinetics"
+	name = TSC_MORPH
 	short_name = "Morpheus"
 	acronym = "MC"
 	desc = "The only large corporation run by positronic intelligences, Morpheus caters almost exclusively to their sensibilities \
@@ -367,7 +367,7 @@
 		)
 
 /datum/lore/organization/tsc/xion
-	name = "Xion Manufacturing Group"
+	name = TSC_XION
 	short_name = "Xion"
 	desc = "Xion, quietly, controls most of the market for industrial equipment. Their portfolio includes mining exosuits, \
 	factory equipment, rugged positronic chassis, and other pieces of equipment vital to the function of the economy. Xion \

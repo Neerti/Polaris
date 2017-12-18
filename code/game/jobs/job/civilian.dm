@@ -4,7 +4,6 @@
 	flag = BARTENDER
 	department = "Civilian"
 	department_flag = CIVILIAN
-	faction = "Station"
 	total_positions = 2
 	spawn_positions = 2
 	supervisors = "the head of personnel"
@@ -22,7 +21,6 @@
 	flag = CHEF
 	department = "Civilian"
 	department_flag = CIVILIAN
-	faction = "Station"
 	total_positions = 2
 	spawn_positions = 2
 	supervisors = "the head of personnel"
@@ -32,14 +30,19 @@
 	minimal_access = list(access_kitchen)
 
 	outfit_type = /decl/hierarchy/outfit/job/service/chef
-	alt_titles = list("Cook")
+	alt_titles = list(
+		"Cook",
+		"Caterer"
+	)
+	alt_titles_faction = list(
+		"Caterer" = "Independant Freelancer"
+	)
 
 /datum/job/hydro
 	title = "Botanist"
 	flag = BOTANIST
 	department = "Civilian"
 	department_flag = CIVILIAN
-	faction = "Station"
 	total_positions = 2
 	spawn_positions = 1
 	supervisors = "the head of personnel"
@@ -57,7 +60,6 @@
 	flag = QUARTERMASTER
 	department = "Cargo"
 	department_flag = CIVILIAN
-	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the head of personnel"
@@ -77,7 +79,6 @@
 	flag = CARGOTECH
 	department = "Cargo"
 	department_flag = CIVILIAN
-	faction = "Station"
 	total_positions = 2
 	spawn_positions = 2
 	supervisors = "the quartermaster and the head of personnel"
@@ -87,13 +88,18 @@
 	minimal_access = list(access_maint_tunnels, access_cargo, access_cargo_bot, access_mailsorting)
 
 	outfit_type = /decl/hierarchy/outfit/job/cargo/cargo_tech
+	alt_titles = list(
+		"Major Bills Contractor" = /decl/hierarchy/outfit/job/cargo/cargo_tech/major_bills
+	)
+	alt_titles_faction = list(
+		"Major Bills Contractor" = TSC_MAJOR
+	)
 
 /datum/job/mining
 	title = "Shaft Miner"
 	flag = MINER
 	department = "Cargo"
 	department_flag = CIVILIAN
-	faction = "Station"
 	total_positions = 3
 	spawn_positions = 3
 	supervisors = "the quartermaster and the head of personnel"
@@ -104,7 +110,15 @@
 	minimal_access = list(access_mining, access_mining_station, access_mailsorting)
 
 	outfit_type = /decl/hierarchy/outfit/job/cargo/mining
-	alt_titles = list("Drill Technician","Prospector")
+	alt_titles = list(
+		"Drill Technician",
+		"Prospector",
+		"Grayson Manufactories Contractor" = /decl/hierarchy/outfit/job/cargo/mining/grayson
+		)
+	alt_titles_faction = list(
+		"Mining Contractor" = "Independant Freelancer",
+		"Grayson Manufactories Contractor" = TSC_GRAYSON
+		)
 
 //Service
 /datum/job/janitor
@@ -112,7 +126,6 @@
 	flag = JANITOR
 	department = "Civilian"
 	department_flag = CIVILIAN
-	faction = "Station"
 	total_positions = 2
 	spawn_positions = 2
 	supervisors = "the head of personnel"
@@ -122,7 +135,14 @@
 	minimal_access = list(access_janitor, access_maint_tunnels)
 
 	outfit_type = /decl/hierarchy/outfit/job/service/janitor
-	alt_titles = list("Custodian", "Sanitation Technician")
+	alt_titles = list(
+		"Custodian",
+		"Sanitation Technician",
+		"Sanitation Contractor"
+		)
+	alt_titles_faction = list(
+		"Sanitation Contractor" = "Independant Freelancer"
+	)
 
 //More or less assistants
 /datum/job/librarian
@@ -130,7 +150,6 @@
 	flag = LIBRARIAN
 	department = "Civilian"
 	department_flag = CIVILIAN
-	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the head of personnel"
@@ -140,7 +159,16 @@
 	minimal_access = list(access_library)
 
 	outfit_type = /decl/hierarchy/outfit/job/librarian
-	alt_titles = list("Journalist", "Professor", "Historian", "Writer")
+	alt_titles = list(
+		"Journalist",
+		"Professor",
+		"Historian",
+		"Writer",
+		"Oculum Broadcast Journalist"
+		)
+	alt_titles_faction = list(
+		"Oculum Broadcast Journalist" = TSC_OCULUM
+		)
 
 //var/global/lawyer = 0//Checks for another lawyer //This changed clothes on 2nd lawyer, both IA get the same dreds.
 /datum/job/lawyer
@@ -148,7 +176,6 @@
 	flag = LAWYER
 	department = "Civilian"
 	department_flag = CIVILIAN
-	faction = "Station"
 	total_positions = 2
 	spawn_positions = 2
 	supervisors = "company officials and Corporate Regulations"

@@ -4,7 +4,6 @@
 	head_position = 1
 	department = "Security"
 	department_flag = ENGSEC
-	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the Colony Director"
@@ -31,7 +30,6 @@
 	flag = WARDEN
 	department = "Security"
 	department_flag = ENGSEC
-	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the head of security"
@@ -48,7 +46,6 @@
 	flag = DETECTIVE
 	department = "Security"
 	department_flag = ENGSEC
-	faction = "Station"
 	total_positions = 2
 	spawn_positions = 2
 	supervisors = "the head of security"
@@ -66,7 +63,6 @@
 	flag = OFFICER
 	department = "Security"
 	department_flag = ENGSEC
-	faction = "Station"
 	total_positions = 4
 	spawn_positions = 4
 	supervisors = "the head of security"
@@ -77,4 +73,12 @@
 	minimal_access = list(access_security, access_eva, access_sec_doors, access_brig, access_maint_tunnels, access_external_airlocks)
 	minimal_player_age = 3
 	outfit_type = /decl/hierarchy/outfit/job/security/officer
-	alt_titles = list("Junior Officer")
+	alt_titles = list(
+		"Junior Officer",
+		"Security Contractor",
+		"PCRC Contractor" = /decl/hierarchy/outfit/job/security/officer/pcrc
+		)
+	alt_titles_faction = list(
+		"Security Contractor" = "Independant Freelancer",
+		"PCRC Contractor" = TSC_PCRC
+	)

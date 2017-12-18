@@ -146,7 +146,8 @@
 /datum/datacore/proc/manifest()
 	spawn()
 		for(var/mob/living/carbon/human/H in player_list)
-			manifest_inject(H)
+			if(H.should_get_manifest_entry())
+				manifest_inject(H)
 		return
 
 /datum/datacore/proc/manifest_modify(var/name, var/assignment)
@@ -193,10 +194,11 @@
 		G.fields["m_stat"]		= "Stable"
 		G.fields["sex"]			= gender2text(H.gender)
 		G.fields["species"]		= H.get_species()
-		G.fields["home_system"]	= H.home_system
 		G.fields["citizenship"]	= H.citizenship
-		G.fields["faction"]		= H.personal_faction
+		G.fields["employer"]	= H.employer
 		G.fields["religion"]	= H.religion
+		G.fields["residence"]	= H.residence
+		G.fields["party_affiliation"] = H.party_affiliation
 		if(H.gen_record && !jobban_isbanned(H, "Records"))
 			G.fields["notes"] = H.gen_record
 
@@ -239,10 +241,11 @@
 		L.fields["enzymes"]		= H.dna.SE // Used in respawning
 		L.fields["identity"]	= H.dna.UI // "
 		L.fields["species"]		= H.get_species()
-		L.fields["home_system"]	= H.home_system
 		L.fields["citizenship"]	= H.citizenship
-		L.fields["faction"]		= H.personal_faction
+		L.fields["employer"]	= H.employer
 		L.fields["religion"]	= H.religion
+		L.fields["residence"]	= H.residence
+		L.fields["party_affiliation"] = H.party_affiliation
 		L.fields["image"]		= getFlatIcon(H)	//This is god-awful
 		L.fields["antagfac"]	= H.antag_faction
 		L.fields["antagvis"]	= H.antag_vis
@@ -447,10 +450,11 @@
 	G.fields["p_stat"] = "Active"
 	G.fields["m_stat"] = "Stable"
 	G.fields["species"] = "Human"
-	G.fields["home_system"]	= "Unknown"
 	G.fields["citizenship"]	= "Unknown"
-	G.fields["faction"]		= "Unknown"
+	G.fields["employer"]	= "Unknown"
 	G.fields["religion"]	= "Unknown"
+	G.fields["residence"]	= "Unknown"
+	G.fields["party_affiliation"] = "Unknown"
 	G.fields["photo_front"]	= front
 	G.fields["photo_side"]	= side
 	G.fields["notes"] = "No notes found."

@@ -4,7 +4,6 @@
 	head_position = 1
 	department = "Medical"
 	department_flag = MEDSCI
-	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the Colony Director"
@@ -30,7 +29,6 @@
 	flag = DOCTOR
 	department = "Medical"
 	department_flag = MEDSCI
-	faction = "Station"
 	total_positions = 5
 	spawn_positions = 3
 	supervisors = "the chief medical officer"
@@ -52,7 +50,6 @@
 	flag = CHEMIST
 	department = "Medical"
 	department_flag = MEDSCI
-	faction = "Station"
 	total_positions = 2
 	spawn_positions = 2
 	supervisors = "the chief medical officer"
@@ -73,7 +70,6 @@
 	flag = GENETICIST
 	department = "Medical"
 	department_flag = MEDSCI
-	faction = "Station"
 	total_positions = 0
 	spawn_positions = 0
 	supervisors = "the chief medical officer and research director"
@@ -91,7 +87,6 @@
 	flag = PSYCHIATRIST
 	department = "Medical"
 	department_flag = MEDSCI
-	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
 	economic_modifier = 5
@@ -108,7 +103,6 @@
 	flag = PARAMEDIC
 	department = "Medical"
 	department_flag = MEDSCI
-	faction = "Station"
 	total_positions = 2
 	spawn_positions = 2
 	supervisors = "the chief medical officer"

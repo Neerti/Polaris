@@ -4,7 +4,6 @@
 	head_position = 1
 	department = "Engineering"
 	department_flag = ENGSEC
-	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the Colony Director"
@@ -34,7 +33,6 @@
 	flag = ENGINEER
 	department = "Engineering"
 	department_flag = ENGSEC
-	faction = "Station"
 	total_positions = 5
 	spawn_positions = 5
 	supervisors = "the chief engineer"
@@ -43,7 +41,19 @@
 	economic_modifier = 5
 	access = list(access_eva, access_engine, access_engine_equip, access_tech_storage, access_maint_tunnels, access_external_airlocks, access_construction, access_atmospherics)
 	minimal_access = list(access_eva, access_engine, access_engine_equip, access_tech_storage, access_maint_tunnels, access_external_airlocks, access_construction)
-	alt_titles = list("Maintenance Technician","Engine Technician","Electrician")
+	alt_titles = list(
+		"Maintenance Technician",
+		"Engine Technician",
+		"Electrician",
+		"Engineering Contractor",
+		"Focal Point Contractor" = /decl/hierarchy/outfit/job/engineering/engineer/focal,
+		"Einstein Engines Contractor"
+	)
+	alt_titles_faction = list(
+		"Engineering Contractor" = "Independant Freelancer",
+		"Focal Point Contractor" = TSC_FOCAL,
+		"Einstein Engines Contractor" = TSC_EE,
+	)
 
 	minimal_player_age = 3
 
@@ -54,7 +64,6 @@
 	flag = ATMOSTECH
 	department = "Engineering"
 	department_flag = ENGSEC
-	faction = "Station"
 	total_positions = 3
 	spawn_positions = 2
 	supervisors = "the chief engineer"
@@ -63,6 +72,14 @@
 	economic_modifier = 5
 	access = list(access_eva, access_engine, access_engine_equip, access_tech_storage, access_maint_tunnels, access_external_airlocks, access_construction, access_atmospherics, access_external_airlocks)
 	minimal_access = list(access_eva, access_engine, access_atmospherics, access_maint_tunnels, access_emergency_storage, access_construction, access_external_airlocks)
+	alt_titles = list(
+		"Atmospherics Contractor",
+		"Aether Atmospherics Contractor" = /decl/hierarchy/outfit/job/engineering/atmos/aether
+	)
+	alt_titles_faction = list(
+		"Atmospherics Contractor" = "Independant Freelancer",
+		"Aether Atmospherics Contractor" = TSC_AETHER
+	)
 
 	minimal_player_age = 3
 

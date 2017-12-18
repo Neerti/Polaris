@@ -311,6 +311,7 @@
 	if(!job.is_position_available()) return 0
 	if(jobban_isbanned(src,rank))	return 0
 	if(!job.player_old_enough(src.client))	return 0
+	if(!job.is_in_faction(client.prefs.employer, client.prefs.GetPlayerAltTitle(job) ))	return 0
 	return 1
 
 
@@ -370,7 +371,9 @@
 	ticker.mode.latespawn(character)
 
 	if(character.mind.assigned_role != "Cyborg")
-		data_core.manifest_inject(character)
+		if(character.should_get_manifest_entry())
+			data_core.manifest_inject(character)
+
 		ticker.minds += character.mind//Cyborgs and AIs handle this in the transform proc.	//TODO!!!!! ~Carn
 
 		//Grab some data from the character prefs for use in random news procs.
@@ -413,7 +416,8 @@
 			// Only players with the job assigned and AFK for less than 10 minutes count as active
 			for(var/mob/M in player_list) if(M.mind && M.client && M.mind.assigned_role == job.title && M.client.inactivity <= 10 * 60 * 10)
 				active++
-			dat += "<a href='byond://?src=\ref[src];SelectedJob=[job.title]'>[job.title] ([job.current_positions]) (Active: [active])</a><br>"
+			//player.client.prefs.GetPlayerAltTitle(job)
+			dat += "<a href='byond://?src=\ref[src];SelectedJob=[job.title]'>[client.prefs.GetPlayerAltTitle(job)] ([job.current_positions]) (Active: [active])</a><br>"
 
 	dat += "</center>"
 	src << browse(dat, "window=latechoices;size=300x640;can_close=1")

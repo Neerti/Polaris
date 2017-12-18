@@ -13,7 +13,7 @@ var/global/datum/controller/occupations/job_master
 	var/list/job_debug = list()
 
 
-	proc/SetupOccupations(var/faction = "Station")
+	proc/SetupOccupations()
 		occupations = list()
 		//var/list/all_jobs = typesof(/datum/job)
 		var/list/all_jobs = list(/datum/job/assistant) | using_map.allowed_jobs
@@ -23,7 +23,7 @@ var/global/datum/controller/occupations/job_master
 		for(var/J in all_jobs)
 			var/datum/job/job = new J()
 			if(!job)	continue
-			if(job.faction != faction)	continue
+			if(job.title == "NOPE")	continue
 			occupations += job
 
 
@@ -57,6 +57,8 @@ var/global/datum/controller/occupations/job_master
 			if(jobban_isbanned(player, rank))
 				return 0
 			if(!job.player_old_enough(player.client))
+				return 0
+			if(!job.is_in_faction(player.client.prefs.employer, player.client.prefs.GetPlayerAltTitle(job) ))
 				return 0
 
 			var/position_limit = job.total_positions
@@ -92,6 +94,9 @@ var/global/datum/controller/occupations/job_master
 			if(job.minimum_character_age && (player.client.prefs.age < job.minimum_character_age))
 				Debug("FOC character not old enough, Player: [player]")
 				continue
+			if(!job.is_in_faction(player.client.prefs.employer, player.client.prefs.GetPlayerAltTitle(job) ))
+				Debug("FOC character in wrong faction, Player: [player]")
+				continue
 			if(flag && (!player.client.prefs.be_special & flag))
 				Debug("FOC flag failed, Player: [player], Flag: [flag], ")
 				continue
@@ -121,6 +126,10 @@ var/global/datum/controller/occupations/job_master
 
 			if(!job.player_old_enough(player.client))
 				Debug("GRJ player not old enough, Player: [player]")
+				continue
+
+			if(!job.is_in_faction(player.client.prefs.employer, player.client.prefs.GetPlayerAltTitle(job) ))
+				Debug("GRJ player in wrong faction, Player: [player]")
 				continue
 
 			if((job.current_positions < job.spawn_positions) || job.spawn_positions == -1)
@@ -266,6 +275,10 @@ var/global/datum/controller/occupations/job_master
 
 					if(!job.player_old_enough(player.client))
 						Debug("DO player not old enough, Player: [player], Job:[job.title]")
+						continue
+
+					if(!job.is_in_faction(player.client.prefs.employer, player.client.prefs.GetPlayerAltTitle(job) ))
+						Debug("DO player in wrong faction, Player: [player], Job:[job.title]")
 						continue
 
 					// If the player wants that job on this level, then try give it to him.

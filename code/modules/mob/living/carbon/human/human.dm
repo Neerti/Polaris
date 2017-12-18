@@ -1517,6 +1517,39 @@
 		return check_organ.organ_can_feel_pain()
 	return !(species.flags & NO_PAIN)
 
+/mob/living/carbon/human/should_get_manifest_entry()
+	if(mind && player_is_antag(mind, only_offstation_roles = 1) ) // manifest_inject() checks this anyways but this proc might get used elsewhere.
+	//	world << "Not giving [src] a manifest entry: They are an offstation antag."
+		return FALSE
+
+	if(!employer) // Something went wrong. Less disasterous if they just get a manifest entry like everyone else.
+	//	world << "Giving [src] a manifest entry: Something went wrong."
+		message_admins("ERROR: [key_name(src)] was forced to pass should_get_manifest_entry() due to employer var being null or invalid.")
+		return TRUE
+	else
+		if(employer == TSC_NT) // Being apart of NanoTrasen means they got your records. Always.
+		//	world << "Giving [src] a manifest entry: Is in NT."
+			return TRUE
+		else if(residence == "NCS Northern Star") // Living at an NT place means they got your records. This is sadly hardcoded.
+		//	world << "Giving [src] a manifest entry: Lives in NT."
+			return TRUE
+		else if(job) // Some jobs (Visitor, Explorer) are 'outside' the reach of NT.
+			var/datum/job/J = job_master.GetJob(job)
+			if(!client) // Alt titles are really annoying sometimes.
+			//	world << "Giving [src] a manifest entry: Client not found."
+				message_admins("ERROR: [key_name(src)] was forced to pass should_get_manifest_entry() due to no client.")
+				return TRUE
+			else
+				var/alt_title = client.prefs.GetPlayerAltTitle(J)
+				if(alt_title == J.title && !J.hide_from_manifest)
+				//	world << "Giving [src] a manifest entry: Lacks alt title and primary title should not be hidden from manifest."
+					return TRUE
+				else if(!(alt_title in J.alt_titles_manifest_hide))
+				//	world << "Giving [src] a manifest entry: Has alt title not on alt_titles_manifest_hide list."
+					return TRUE
+//	world << "Not giving [src] a manifest entry: All other conditions failed."
+	return FALSE
+
 /mob/living/carbon/human/is_muzzled()
 	return (wear_mask && (istype(wear_mask, /obj/item/clothing/mask/muzzle) || istype(src.wear_mask, /obj/item/weapon/grenade)))
 

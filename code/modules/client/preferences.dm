@@ -58,10 +58,11 @@ datum/preferences
 	var/b_synth							//Same as above
 
 		//Some faction information.
-	var/home_system = "Unset"           //System of birth.
-	var/citizenship = "None"            //Current home system.
-	var/faction = "None"                //General associated faction.
-	var/religion = "None"               //Religious association.
+	var/citizenship = null              //Current home system.
+	var/employer = null                 //General associated faction.
+	var/religion = null                 //Religious association.
+	var/residence = null                //Where the character lives.
+	var/party_affiliation = null        //Political stuff.
 	var/antag_faction = "None"			//Antag associated faction.
 	var/antag_vis = "Hidden"			//How visible antag association is to others.
 
@@ -104,8 +105,6 @@ datum/preferences
 	var/gen_record = ""
 	var/exploit_record = ""
 	var/disabilities = 0
-
-	var/nanotrasen_relation = "Neutral"
 
 	var/uplinklocation = "PDA"
 

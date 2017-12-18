@@ -42,7 +42,7 @@
 	corporate towns, such as the [quick_link("Northern Star")].\
 	<br><br>\
 	[quick_link("Nanotrasen")], a R&D firm, is generally regarded as the most enthusiastic supporter of the SEO. Other contributing TSCs include the next six largest corporations \
-	in human space: "+quick_link(TSC_WT)+" GMC, "+TSC_GIL+" Exports, Grayson Manufacturing Ltd., Aether Atmospherics and Recycling, [quick_link("Zeng-Hu Pharmaceuticals")] and "+TSC_HEPH+" \
+	in human space: "+quick_link(TSC_WT)+", "+TSC_GIL+", Grayson Manufacturing Ltd., Aether Atmospherics and Recycling, [quick_link("Zeng-Hu Pharmaceuticals")] and "+TSC_HEPH+" \
 	Industries, as well as, notably, [quick_link("Vey-Med")]. The Free Trade Union's participation in the SEO is a contentious issue that many of its members disagree with, but \
 	most FTU representatives caucus with the SEO."
 

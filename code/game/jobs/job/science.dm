@@ -4,7 +4,6 @@
 	head_position = 1
 	department = "Science"
 	department_flag = MEDSCI
-	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the Colony Director"
@@ -33,7 +32,6 @@
 	flag = SCIENTIST
 	department = "Science"
 	department_flag = MEDSCI
-	faction = "Station"
 	total_positions = 5
 	spawn_positions = 3
 	supervisors = "the research director"
@@ -53,7 +51,6 @@
 	flag = XENOBIOLOGIST
 	department = "Science"
 	department_flag = MEDSCI
-	faction = "Station"
 	total_positions = 3
 	spawn_positions = 2
 	supervisors = "the research director"
@@ -73,7 +70,6 @@
 	flag = ROBOTICIST
 	department = "Science"
 	department_flag = MEDSCI
-	faction = "Station"
 	total_positions = 2
 	spawn_positions = 2
 	supervisors = "research director"
@@ -85,4 +81,13 @@
 	minimal_player_age = 7
 
 	outfit_type = /decl/hierarchy/outfit/job/science/roboticist
-	alt_titles = list("Biomechanical Engineer","Mechatronic Engineer")
+	alt_titles = list(
+		"Biomechanical Engineer",
+		"Mechatronic Engineer",
+		"Bishop Contractor",
+		"Morpheus Contractor"
+	)
+	alt_titles_faction = list(
+		"Bishop Contractor" = TSC_BC,
+		"Morpheus Contractor" = TSC_MORPH
+	)

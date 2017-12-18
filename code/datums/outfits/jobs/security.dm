@@ -48,3 +48,7 @@
 	l_pocket = /obj/item/device/flash
 	id_type = /obj/item/weapon/card/id/security/officer
 	pda_type = /obj/item/device/pda/security
+
+/decl/hierarchy/outfit/job/security/officer/pcrc
+	name = OUTFIT_JOB_NAME("PCRC Contractor")
+	uniform = /obj/item/clothing/under/pcrc

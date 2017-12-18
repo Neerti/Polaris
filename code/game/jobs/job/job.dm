@@ -7,7 +7,7 @@
 	var/list/access = list()              // Useful for servers which either have fewer players, so each person needs to fill more than one role, or servers which like to give more access, so players can't hide forever in their super secure departments (I'm looking at you, chemistry!)
 	var/flag = 0 	                      // Bitflags for the job
 	var/department_flag = 0
-	var/faction = "None"	              // Players will be allowed to spawn in as jobs that are set to "Station"
+	var/faction = TSC_NT	              // Players will be allowed to spawn in as jobs that equal their faction. If null, anyone can join as that job (e.g. Visitor).
 	var/total_positions = 0               // How many players can be this job
 	var/spawn_positions = 0               // How many players can spawn in as this job
 	var/current_positions = 0             // How many players have this job
@@ -15,12 +15,16 @@
 	var/selection_color = "#ffffff"       // Selection screen color
 	var/idtype = /obj/item/weapon/card/id // The type of the ID the player will have
 	var/list/alt_titles                   // List of alternate titles, if any
+	var/list/alt_titles_faction = list()  // What faction an alt title is associated with. If unset, defaults to the base job's faction.
+	var/list/alt_titles_manifest_hide = list() // Some alt-titles shouldn't show on the manifest just for existing.
+	var/shared_slot = null                // If set, will use the same slots as another job instead of its own. Uses the slot's title as a link.
 	var/req_admin_notify                  // If this is set to 1, a text is printed to the player when jobs are assigned, telling him that he should let admins know that he has to disconnect.
 	var/minimal_player_age = 0            // If you have use_age_restriction_for_jobs config option enabled and the database set up, this option will add a requirement for players to be at least minimal_player_age days old. (meaning they first signed in at least that many days before.)
 	var/department = null                 // Does this position have a department tag?
 	var/head_position = 0                 // Is this position Command?
 	var/minimum_character_age = 0
 	var/ideal_character_age = 30
+	var/hide_from_manifest = FALSE        // Some jobs are outside of NT and as such shouldn't show up on the manifest by default. Other circumstances can override this.
 
 	var/account_allowed = 1				  // Does this job type come with a station account?
 	var/economic_modifier = 2			  // With how much does this job modify the initial account amount?
@@ -51,17 +55,16 @@
 	if(!account_allowed || (H.mind && H.mind.initial_account))
 		return
 
-	var/loyalty = 1
+	var/employer_modifier = 1
 	if(H.client)
-		switch(H.client.prefs.nanotrasen_relation)
-			if(COMPANY_LOYAL)		loyalty = 1.30
-			if(COMPANY_SUPPORTATIVE)loyalty = 1.15
-			if(COMPANY_NEUTRAL)		loyalty = 1
-			if(COMPANY_SKEPTICAL)	loyalty = 0.85
-			if(COMPANY_OPPOSED)		loyalty = 0.70
+		if(H.client.prefs.employer)
+			var/datum/category_group/backstory/employer/group = backstory_collection.categories_by_name["Employer"]
+			var/datum/category_item/backstory/employer/item = group.items_by_name[H.client.prefs.employer]
+			if(item)
+				employer_modifier = item.economic_modifier
 
 	//give them an account in the station database
-	var/money_amount = (rand(5,50) + rand(5, 50)) * loyalty * economic_modifier * (H.species ? economic_species_modifier[H.species.type] : 2)
+	var/money_amount = (rand(5,50) + rand(5, 50)) * employer_modifier * economic_modifier * (H.species ? economic_species_modifier[H.species.type] : 2)
 	var/datum/money_account/M = create_account(H.real_name, money_amount, null)
 	if(H.mind)
 		var/remembered_info = ""
@@ -99,6 +102,19 @@
 	if(C && config.use_age_restriction_for_jobs && isnum(C.player_age) && isnum(minimal_player_age))
 		return max(0, minimal_player_age - C.player_age)
 	return 0
+
+/datum/job/proc/is_in_faction(var/their_faction, var/alt_title)
+	var/faction_to_test = get_faction_requirement(alt_title)
+
+	if(!faction_to_test) // Null means its free for everyone.
+		return TRUE
+	else
+		return faction_to_test == their_faction
+
+/datum/job/proc/get_faction_requirement(var/alt_title)
+	if(alt_title && alt_title in alt_titles_faction)
+		return alt_titles_faction[alt_title]
+	return faction
 
 /datum/job/proc/apply_fingerprints(var/mob/living/carbon/human/target)
 	if(!istype(target))

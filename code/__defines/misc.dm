@@ -201,14 +201,23 @@
 
 // Canonical spellings of TSCs, so typos never have to happen again due to human error.
 #define TSC_NT		"NanoTrasen"
-#define TSC_HEPH	"Hephaestus" // Because everyone misspells it
-#define TSC_VM		"Vey Med"
-#define TSC_ZH		"Zeng-Hu"
-#define TSC_WT		"Ward-Takahashi"
+#define TSC_HEPH	"Hephaestus Industries" // Because everyone misspells it
+#define TSC_VM		"Vey Medical"
+#define TSC_ZH		"Zeng-Hu Pharmaceuticals"
+#define TSC_WT		"Ward-Takahashi GMC"
 #define TSC_BC		"Bishop Cybernetics"
-#define TSC_MORPH	"Morpheus"
-#define TSC_XION	"Xion" // Not really needed but consistancy I guess.
-#define TSC_GIL 	"Gilthari"
+#define TSC_MORPH	"Morpheus Cyberkenetics"
+#define TSC_XION	"Xion Manufacturing Group"
+#define TSC_GIL 	"Gilthari Exports"
+#define TSC_PCRC	"Proxima Centauri Risk Control"
+#define TSC_AETHER	"Aether Atmospherics"
+#define TSC_GRAYSON	"Grayson Manufactories"
+#define TSC_EE		"Einstein Engines"
+#define TSC_FOCAL	"Focal Point"
+#define TSC_OCULUM	"Oculum Broadcast"
+#define TSC_MAJOR	"Major Bill's Transportation"
+#define TSC_WULF	"Wulf Aeronautics"
+
 
 #define MIDNIGHT_ROLLOVER		864000	//number of deciseconds in a day
 

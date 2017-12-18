@@ -1005,6 +1005,10 @@ default behaviour is:
 		return FALSE
 	return TRUE
 
+// Used mostly for humans joining. It's here for inheritence incase it becomes useful later.
+/mob/living/proc/should_get_manifest_entry()
+	return TRUE
+
 // Gets the correct icon_state for being on fire. See OnFire.dmi for the icons.
 /mob/living/proc/get_fire_icon_state()
 	return "generic"

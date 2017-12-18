@@ -26,9 +26,18 @@
 	id_type = /obj/item/weapon/card/id/engineering/engineer
 	pda_type = /obj/item/device/pda/engineering
 
+/decl/hierarchy/outfit/job/engineering/engineer/focal
+	name = OUTFIT_JOB_NAME("Focal Point contractor")
+	uniform = /obj/item/clothing/under/focal
+
 /decl/hierarchy/outfit/job/engineering/atmos
 	name = OUTFIT_JOB_NAME("Atmospheric technician")
 	uniform = /obj/item/clothing/under/rank/atmospheric_technician
 	belt = /obj/item/weapon/storage/belt/utility/atmostech
 	id_type = /obj/item/weapon/card/id/engineering/atmos
 	pda_type = /obj/item/device/pda/atmos
+
+/decl/hierarchy/outfit/job/engineering/atmos/aether
+	name = OUTFIT_JOB_NAME("Aether Atmospherics contractor")
+	uniform = /obj/item/clothing/under/aether
+

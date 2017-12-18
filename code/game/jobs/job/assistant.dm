@@ -3,7 +3,7 @@
 	flag = ASSISTANT
 	department = "Civilian"
 	department_flag = CIVILIAN
-	faction = "Station"
+	faction = TSC_NT
 	total_positions = -1
 	spawn_positions = -1
 	supervisors = "absolutely everyone"
@@ -15,6 +15,13 @@
 	alt_titles = list("Technical Assistant","Medical Intern","Research Assistant",
 					"Visitor" = /decl/hierarchy/outfit/job/assistant/visitor,
 					"Resident" = /decl/hierarchy/outfit/job/assistant/resident)
+	alt_titles_faction = list(
+		"Visitor" = null,
+		"Resident" = null
+		)
+	alt_titles_manifest_hide = list(
+		"Visitor"
+		)
 
 /datum/job/assistant/get_access()
 	if(config.assistant_maint)

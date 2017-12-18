@@ -93,6 +93,11 @@
 		if(job.minimum_character_age && user.client && (user.client.prefs.age < job.minimum_character_age))
 			. += "<del>[rank]</del></td><td> \[MINIMUM CHARACTER AGE: [job.minimum_character_age]]</td></tr>"
 			continue
+		if(!job.is_in_faction(pref.employer, pref.GetPlayerAltTitle(job) ))
+			. += "<del>[rank]</del></td><td> \[REQUIRED FACTION: [uppertext(job.get_faction_requirement(pref.GetPlayerAltTitle(job)) )]]</td></tr>"
+			// Required so you can switch off an alt-title you're not allowed to be.
+			. += "</a></td></tr><tr bgcolor='[lastJob.selection_color]'><td width='60%' align='center'>&nbsp</td><td><a href='?src=\ref[src];select_alt_title=\ref[job]'>\[[pref.GetPlayerAltTitle(job)]\]</a></td></tr>"
+			continue
 		if((pref.job_civilian_low & ASSISTANT) && (rank != "Assistant"))
 			. += "<font color=grey>[rank]</font></td><td></td></tr>"
 			continue

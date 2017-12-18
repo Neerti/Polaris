@@ -45,10 +45,11 @@
 	var/pdachoice = 1	//Which PDA type the player has chosen. Default, Slim, Old, or Rugged.
 
 	// General information
-	var/home_system = ""
 	var/citizenship = ""
-	var/personal_faction = ""
+	var/employer = ""
 	var/religion = ""
+	var/residence = ""
+	var/party_affiliation = ""
 	var/antag_faction = ""
 	var/antag_vis = ""
 

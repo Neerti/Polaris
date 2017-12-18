@@ -510,17 +510,6 @@ proc/display_roundstart_logout_report()
 		if(M.client && M.client.holder)
 			M << msg
 
-proc/get_nt_opposed()
-	var/list/dudes = list()
-	for(var/mob/living/carbon/human/man in player_list)
-		if(man.client)
-			if(man.client.prefs.nanotrasen_relation == COMPANY_OPPOSED)
-				dudes += man
-			else if(man.client.prefs.nanotrasen_relation == COMPANY_SKEPTICAL && prob(50))
-				dudes += man
-	if(dudes.len == 0) return null
-	return pick(dudes)
-
 /proc/show_objectives(var/datum/mind/player)
 
 	if(!player || !player.current) return
