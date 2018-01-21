@@ -219,6 +219,7 @@
 /obj/item/clothing/head/psy_crown
 	name = "broken crown"
 	desc = "A crown-of-thorns with a missing gem."
+	init_hide_identity = TRUE
 	var/tension_threshold = 150
 	var/cooldown = null // world.time of when this was last triggered.
 	var/cooldown_duration = 3 MINUTES // How long the cooldown should be.

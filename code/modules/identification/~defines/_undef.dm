@@ -1,0 +1,3 @@
+#undef ITEM_BLESSED
+#undef ITEM_NORMAL
+#undef ITEM_CURSED
