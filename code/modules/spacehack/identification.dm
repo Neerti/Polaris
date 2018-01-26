@@ -1,3 +1,4 @@
+// This is on the base /item so badmins can play with it by calling hide_identity().
 /obj/item
 	var/datum/identification/identity = null
 	var/identity_type = /datum/identification
@@ -19,14 +20,14 @@
 	else
 		identity.unidentify()
 
-/obj/item/proc/identify(mob/user)
+/obj/item/proc/identify(mob/user, identity_type = IDENTITY_FULL)
 	if(identity)
-		identity.identify(user)
+		identity.identify(user, identity_type)
 
-/obj/item/proc/is_identified()
+/obj/item/proc/is_identified(identity_type = IDENTITY_FULL)
 	if(!identity) // No identification datum means nothing to hide.
 		return TRUE
-	return identity.identified
+	return identity.identified & identity_type
 
 // This is a datum attached to objects to make their 'identity' be unknown initially.
 // The identitiy and properties of an unidentified object can be determined in various ways.
@@ -41,12 +42,11 @@
 	var/true_description_antag = null						// Ditto, for antag info (this probably won't get used).
 	var/unidentified_name = null							// The name given to the object when not identified.
 
-	var/identified = FALSE									// If it's been 'formally' identified.
+	var/identified = IDENTITY_UNKNOWN // Can be IDENTITY_UNKNOWN, IDENTITY_PROPERTIES, IDENTITY_BUC, or IDENTITY_FULL.
 
 /datum/identification/New(new_holder)
+	ASSERT(new_holder)
 	holder = new_holder
-	if(!holder)
-		message_admins("ERROR: Identification datum was not given a holder!")
 	record_true_identity() // Get all the identifying features from the holder.
 	if(!identified)
 		update_name() // Then hide them for awhile.
@@ -56,23 +56,35 @@
 	return ..()
 
 // Formally identifies the holder.
-/datum/identification/proc/identify(mob/user)
-	if(identified == TRUE) // Already done.
+/datum/identification/proc/identify(mob/user, new_identity = IDENTITY_FULL)
+	if(identified & new_identity) // Already done.
 		return
 
-	identified = TRUE
+	identified |= new_identity
 	if(user)
-		to_chat(user, "<span class='notice'>You've identified \the [holder] as a [true_name].</span>")
+		switch(identified)
+			if(IDENTITY_BUC)
+				to_chat(user, "<span class='notice'>You've identified \the [holder]'s quality.</span>")
+			if(IDENTITY_PROPERTIES)
+				to_chat(user, "<span class='notice'>You've identified \the [holder]'s functionality as a [true_name].</span>")
+			if(IDENTITY_FULL)
+				to_chat(user, "<span class='notice'>You've identified \the [holder] as a [true_name], and its quality.</span>")
 	update_name()
 	holder.update_icon()
 
 // Reverses identification for whatever reason.
-/datum/identification/proc/unidentify(mob/user)
-	identified = FALSE
+/datum/identification/proc/unidentify(mob/user, new_identity = IDENTITY_UNKNOWN)
+	identified &= ~new_identity
 	update_name()
 	holder.update_icon()
 	if(user)
-		to_chat(user, "<span class='warning'>You forgot what \the [holder] did...</span>")
+		switch(identified)
+			if(IDENTITY_BUC)
+				to_chat(user, "<span class='warning'>You forgot what \the [holder] actually did...</span>")
+			if(IDENTITY_PROPERTIES)
+				to_chat(user, "<span class='warning'>You forgot what \the [holder]'s quality...</span>")
+			if(IDENTITY_UNKNOWN)
+				to_chat(user, "<span class='warning'>You forgot everything about \the [holder].</span>")
 
 // Records the object's inital identifiying features to the datum for future safekeeping.
 /datum/identification/proc/record_true_identity()
@@ -83,7 +95,7 @@
 	true_description_antag = holder.description_antag
 
 /datum/identification/proc/update_name()
-	if(identified)
+	if(identified & IDENTITY_PROPERTIES)
 		holder.name = true_name
 		holder.desc = true_desc
 		holder.description_info = true_description_info
