@@ -22,7 +22,6 @@ var/const/access_explorer = 43
 /obj/item/weapon/card/id/medical/sar
 	assignment = "Search and Rescue"
 	rank = "Search and Rescue"
-	job_access_type = /datum/job/sar
 
 /obj/item/weapon/card/id/civilian/pilot
 	assignment = "Pilot"
@@ -32,7 +31,6 @@ var/const/access_explorer = 43
 /obj/item/weapon/card/id/civilian/explorer
 	assignment = "Explorer"
 	rank = "Explorer"
-	job_access_type = /datum/job/explorer
 
 //SC Jobs
 
@@ -83,7 +81,7 @@ var/const/access_explorer = 43
 	access = list(access_pilot, access_cargo, access_mining, access_mining_station)
 	minimal_access = list(access_pilot, access_cargo, access_mining, access_mining_station)
 	outfit_type = /decl/hierarchy/outfit/job/pilot
-
+/*
 /datum/job/explorer
 	title = "Explorer"
 	flag = EXPLORER
@@ -118,3 +116,4 @@ var/const/access_explorer = 43
 	access = list(access_medical, access_medical_equip, access_morgue, access_surgery, access_chemistry, access_virology, access_eva, access_maint_tunnels, access_external_airlocks, access_psychiatrist, access_explorer)
 	minimal_access = list(access_medical, access_medical_equip, access_morgue, access_explorer)
 	outfit_type = /decl/hierarchy/outfit/job/medical/sar
+*/
