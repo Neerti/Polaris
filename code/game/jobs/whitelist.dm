@@ -46,7 +46,7 @@ var/list/whitelist = list()
 	//If we have a loaded file, search it
 	if(alien_whitelist)
 		for (var/s in alien_whitelist)
-			if(findtext(s,"[M.ckey] - [species.name]"))
+			if(findtext(s,"[M.ckey] - [species.name_id]"))
 				return 1
 			if(findtext(s,"[M.ckey] - All"))
 				return 1

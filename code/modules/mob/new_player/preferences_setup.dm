@@ -233,7 +233,7 @@
 						if(previewJob.title == job_name)
 							permitted = 1
 
-				if(G.whitelisted && (G.whitelisted != mannequin.species.name))
+				if(G.whitelisted && (G.whitelisted != mannequin.species.name_id))
 					permitted = 0
 
 				if(!permitted)

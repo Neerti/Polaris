@@ -1,6 +1,7 @@
 /datum/species/skeleton
 	name = "Skeleton"
 	name_plural = "Skeletons"
+	name_id = SPECIES_SKELETON
 	icobase = 'icons/mob/human_races/r_skeleton.dmi'
 	primitive_form = "Monkey"
 	language = "Sol Common"

@@ -229,6 +229,50 @@
 #define SLIME_COMMAND_FACTION	2 // When in the same 'faction'.
 #define SLIME_COMMAND_FRIEND	3 // When befriended with a slime friendship agent.
 
+// Species IDs.
+// Use these when filling out species.name_id.
+// These should be used for comparing species or storing a type of species in a file, and not for display purposes.
+// Use species.name for displaying to the user instead, since that can be changed, where as these should never be changed.
+
+// 'Regular' species.
+#define SPECIES_HUMAN			"Human"
+#define SPECIES_HUMAN_VATBORN	"Vatborn"
+#define SPECIES_UNATHI			"Unathi"
+#define SPECIES_SKRELL			"Skrell"
+#define SPECIES_TESHARI			"Teshari"
+#define SPECIES_TAJ				"Tajara" // This is """incorrect""" but savefiles depend on it SO DON'T CHANGE IT.
+#define SPECIES_PROMETHEAN		"Promethean"
+#define SPECIES_DIONA			"Diona"
+#define SPECIES_VOX				"Vox"
+
+// Monkey and alien monkeys.
+#define SPECIES_MONKEY			"Monkey"
+#define SPECIES_MONKEY_TAJ		"Farwa"
+#define SPECIES_MONKEY_SKRELL	"Neaera"
+#define SPECIES_MONKEY_UNATHI	"Stok"
+
+// Virtual Reality IDs.
+#define SPECIES_VR				"Virtual Reality Avatar"
+#define SPECIES_VR_HUMAN		"Virtual Reality Human"
+#define SPECIES_VR_UNATHI		"Virtual Reality Unathi"
+#define SPECIES_VR_TAJ			"Virtual Reality Tajara" // NO CHANGING.
+#define SPECIES_VR_SKRELL		"Virtual Reality Skrell"
+#define SPECIES_VR_TESHARI		"Virtual Reality Teshari"
+#define SPECIES_VR_DIONA		"Virtual Reality Diona"
+
+// Ayyy IDs.
+#define SPECIES_XENO			"Xenomorph"
+#define SPECIES_XENO_DRONE		"Xenomorph Drone"
+#define SPECIES_XENO_HUNTER		"Xenomorph Hunter"
+#define SPECIES_XENO_SENTINEL	"Xenomorph Sentinel"
+#define SPECIES_XENO_QUEEN		"Xenomorph Queen"
+
+// Misc species. Mostly unused but might as well be complete.
+#define SPECIES_SHADOW			"Shadow"
+#define SPECIES_SKELETON		"Skeleton"
+#define SPECIES_GOLEM			"Golem"
+
+
 //Vision flags, for dealing with plane visibility
 #define VIS_FULLBRIGHT		1
 #define VIS_LIGHTING		2

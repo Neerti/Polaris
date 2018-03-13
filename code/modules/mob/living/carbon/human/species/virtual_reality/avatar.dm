@@ -7,6 +7,7 @@
 
 	name =             "Virtual Reality Avatar"
 	name_plural =      "Virtual Reality Avatars"
+	name_id =           SPECIES_VR
 	blurb =            "A 3-dimensional representation of some sort of animate object used to display the presence and actions of some-one or -thing using a virtual reality program."
 	show_ssd =         "eerily still"
 	death_message =    "flickers briefly, their gear falling in a heap on the floor around their motionless body."

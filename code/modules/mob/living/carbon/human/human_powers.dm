@@ -79,7 +79,7 @@
 	M << "<font color='blue'>Like lead slabs crashing into the ocean, alien thoughts drop into your mind: [text]</font>"
 	if(istype(M,/mob/living/carbon/human))
 		var/mob/living/carbon/human/H = M
-		if(H.species.name == src.species.name)
+		if(H.species.same_species(src.species))
 			return
 		H << "<font color='red'>Your nose begins to bleed...</font>"
 		H.drip(1)

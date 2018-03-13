@@ -18,7 +18,7 @@
 
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
-		if(H.species && H.species.name == "Promethean")
+		if(H.species && H.species.is_species(SPECIES_PROMETHEAN))
 			return FALSE // Prometheans are always our friends.
 		else if(istype(H.species, /datum/species/monkey)) // istype() is so they'll eat the alien monkeys too.
 			return TRUE // Monkeys are always food.

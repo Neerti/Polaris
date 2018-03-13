@@ -129,7 +129,7 @@ the artifact triggers the rage.
 
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
-		if(H.species.name == "Diona")
+		if(H.species.is_species(SPECIES_DIONA))
 			to_chat(L, "<span class='warning'>You feel strange for a moment, but it passes.</span>")
 			return FALSE // Happy trees aren't affected by blood rages.
 

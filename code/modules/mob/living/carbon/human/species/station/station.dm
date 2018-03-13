@@ -1,6 +1,7 @@
 /datum/species/human
 	name = "Human"
 	name_plural = "Humans"
+	name_id = SPECIES_HUMAN
 	primitive_form = "Monkey"
 	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/punch, /datum/unarmed_attack/bite)
 	blurb = "Humanity originated in the Sol system, and over the last five centuries has spread \
@@ -25,6 +26,7 @@
 /datum/species/unathi
 	name = "Unathi"
 	name_plural = "Unathi"
+	name_id = SPECIES_UNATHI
 	icobase = 'icons/mob/human_races/r_lizard.dmi'
 	deform = 'icons/mob/human_races/r_def_lizard.dmi'
 	tail = "sogtail"
@@ -134,6 +136,7 @@
 /datum/species/tajaran
 	name = "Tajara"
 	name_plural = "Tajaran"
+	name_id = SPECIES_TAJ
 	icobase = 'icons/mob/human_races/r_tajaran.dmi'
 	deform = 'icons/mob/human_races/r_def_tajaran.dmi'
 	tail = "tajtail"
@@ -217,6 +220,7 @@
 /datum/species/skrell
 	name = "Skrell"
 	name_plural = "Skrell"
+	name_id = SPECIES_SKRELL
 	icobase = 'icons/mob/human_races/r_skrell.dmi'
 	deform = 'icons/mob/human_races/r_def_skrell.dmi'
 	primitive_form = "Neaera"
@@ -290,6 +294,7 @@
 /datum/species/diona
 	name = "Diona"
 	name_plural = "Dionaea"
+	name_id = SPECIES_DIONA
 	icobase = 'icons/mob/human_races/r_diona.dmi'
 	deform = 'icons/mob/human_races/r_def_plant.dmi'
 	language = LANGUAGE_ROOTLOCAL

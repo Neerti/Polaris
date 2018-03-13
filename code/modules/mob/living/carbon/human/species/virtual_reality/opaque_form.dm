@@ -3,6 +3,7 @@
 
 /datum/species/shapeshifter/promethean/avatar/human
 	name = "Virtual Reality Human"
+	name_id = SPECIES_VR_HUMAN
 	icobase = 'icons/mob/human_races/r_human.dmi'
 	deform = 'icons/mob/human_races/r_def_human.dmi'
 	appearance_flags = HAS_HAIR_COLOR | HAS_SKIN_TONE | HAS_LIPS | HAS_UNDERWEAR | HAS_EYE_COLOR
@@ -22,6 +23,7 @@
 
 /datum/species/shapeshifter/promethean/avatar/unathi
 	name = "Virtual Reality Unathi"
+	name_id = SPECIES_VR_UNATHI
 	icobase = 'icons/mob/human_races/r_lizard.dmi'
 	deform = 'icons/mob/human_races/r_def_lizard.dmi'
 	tail = "sogtail"
@@ -43,6 +45,7 @@
 
 /datum/species/shapeshifter/promethean/avatar/tajaran
 	name = "Virtual Reality Tajara"
+	name_id = SPECIES_VR_TAJ
 	icobase = 'icons/mob/human_races/r_tajaran.dmi'
 	deform = 'icons/mob/human_races/r_def_tajaran.dmi'
 	tail = "tajtail"
@@ -64,6 +67,7 @@
 
 /datum/species/shapeshifter/promethean/avatar/skrell
 	name = "Virtual Reality Skrell"
+	name_id = SPECIES_VR_SKRELL
 	icobase = 'icons/mob/human_races/r_skrell.dmi'
 	deform = 'icons/mob/human_races/r_def_skrell.dmi'
 	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR
@@ -83,6 +87,7 @@
 
 /datum/species/shapeshifter/promethean/avatar/teshari
 	name = "Virtual Reality Teshari"
+	name_id = SPECIES_VR_TESHARI
 	icobase = 'icons/mob/human_races/r_seromi.dmi'
 	deform = 'icons/mob/human_races/r_seromi.dmi'
 	appearance_flags = HAS_HAIR_COLOR | HAS_SKIN_COLOR | HAS_EYE_COLOR
@@ -102,6 +107,7 @@
 
 /datum/species/shapeshifter/promethean/avatar/diona
 	name = "Virtual Reality Diona"
+	name_id = SPECIES_VR_DIONA
 	icobase = 'icons/mob/human_races/r_diona.dmi'
 	deform = 'icons/mob/human_races/r_def_plant.dmi'
 	appearance_flags = 0

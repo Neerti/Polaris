@@ -2,6 +2,7 @@
 /datum/species/human/gravworlder
 	name = "grav-adapted Human"
 	name_plural = "grav-adapted Humans"
+	name_id = SPECIES_HUMAN_GRAV
 	blurb = "Heavier and stronger than a baseline human, gravity-adapted people have \
 	thick radiation-resistant skin with a high lead content, denser bones, and recessed \
 	eyes beneath a prominent brow in order to shield them from the glare of a dangerously \
@@ -20,6 +21,7 @@
 /datum/species/human/spacer
 	name = "space-adapted Human"
 	name_plural = "space-adapted Humans"
+	name_id = SPECIES_HUMAN_SPACE
 	blurb = "Lithe and frail, these sickly folk were engineered for work in environments that \
 	lack both light and atmosphere. As such, they're quite resistant to asphyxiation as well as \
 	toxins, but they suffer from weakened bone structure and a marked vulnerability to bright lights."
@@ -35,6 +37,7 @@
 /datum/species/human/vatgrown
 	name = "Vatborn"
 	name_plural = "Vatborn"
+	name_id = SPECIES_HUMAN_VATBORN
 	blurb = "With cloning on the forefront of human scientific advancement, cheap mass production \
 	of bodies is a very real and rather ethically grey industry. Vat-grown or Vatborn humans tend to be \
 	paler than baseline, with no appendix and fewer inherited genetic disabilities, but a more aggressive metabolism."
@@ -57,6 +60,7 @@
 /datum/species/human/chimpanzee
 	name = "uplifted Chimpanzee"
 	name_plural = "uplifted Chimpanzees"
+	name_id = SPECIES_HUMAN_CHIMP
 	blurb = "Ook ook."
 	icobase = 'icons/mob/human_races/subspecies/r_upliftedchimp.dmi'
 */

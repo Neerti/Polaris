@@ -185,7 +185,7 @@ var/global/list/string_slot_flags = list(
 
 		S = new T
 		S.race_key = rkey //Used in mob icon caching.
-		all_species[S.name] = S
+		all_species[S.name_id] = S
 
 		if(!(S.spawn_flags & SPECIES_IS_RESTRICTED))
 			playable_species += S.name

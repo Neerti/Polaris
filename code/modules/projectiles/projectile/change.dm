@@ -35,7 +35,7 @@
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 			if(H.species)
-				options -= H.species.name
+				options -= H.species.name_id
 		else if(isrobot(M))
 			options -= "robot"
 		else if(isslime(M))

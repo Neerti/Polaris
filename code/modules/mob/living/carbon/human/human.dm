@@ -762,7 +762,7 @@
 /mob/living/carbon/human/get_species()
 	if(!species)
 		set_species()
-	return species.name
+	return species.name_id
 
 /mob/living/carbon/human/proc/play_xylophone()
 	if(!src.xylophone)
@@ -1122,7 +1122,7 @@
 
 	if(species)
 
-		if(species.name && species.name == new_species)
+		if(species.name_id && species.name_id == new_species)
 			return
 		if(species.language)
 			remove_language(species.language)
@@ -1159,7 +1159,7 @@
 	if(!(gender in species.genders))
 		gender = species.genders[1]
 
-	icon_state = lowertext(species.name)
+	icon_state = lowertext(species.name_id)
 
 	species.create_organs(src)
 

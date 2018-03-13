@@ -1,6 +1,7 @@
 /datum/species/teshari
 	name = "Teshari"
 	name_plural = "Tesharii"
+	name_id = SPECIES_TESHARI
 	blurb = "A race of feathered raptors who developed alongside the Skrell, inhabiting \
 	the polar tundral regions outside of Skrell territory. Extremely fragile, they developed \
 	hunting skills that emphasized taking out their prey without themselves getting hit. They \

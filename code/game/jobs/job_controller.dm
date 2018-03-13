@@ -346,7 +346,7 @@ var/global/datum/controller/occupations/job_master
 
 						if(G.whitelisted && !is_alien_whitelisted(H, all_species[G.whitelisted]))
 
-						//if(G.whitelisted && (G.whitelisted != H.species.name || !is_alien_whitelisted(H, G.whitelisted)))
+						//if(G.whitelisted && (G.whitelisted != H.species.name_id || !is_alien_whitelisted(H, G.whitelisted)))
 							permitted = 0
 
 						if(!permitted)

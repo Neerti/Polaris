@@ -2,6 +2,7 @@
 /datum/species/xenos
 	name = "Xenomorph"
 	name_plural = "Xenomorphs"
+	name_id = SPECIES_XENO
 
 	default_language = "Xenomorph"
 	language = "Hivemind"
@@ -165,6 +166,7 @@
 
 /datum/species/xenos/drone
 	name = "Xenomorph Drone"
+	name_id = SPECIES_XENO_DRONE
 	caste_name = "drone"
 	weeds_plasma_rate = 15
 	slowdown = 1
@@ -203,6 +205,7 @@
 
 /datum/species/xenos/hunter
 	name = "Xenomorph Hunter"
+	name_id = SPECIES_XENO_HUNTER
 	weeds_plasma_rate = 5
 	caste_name = "hunter"
 	slowdown = -2
@@ -231,6 +234,7 @@
 
 /datum/species/xenos/sentinel
 	name = "Xenomorph Sentinel"
+	name_id = SPECIES_XENO_SENTINEL
 	weeds_plasma_rate = 10
 	caste_name = "sentinel"
 	slowdown = 0
@@ -262,6 +266,7 @@
 /datum/species/xenos/queen
 
 	name = "Xenomorph Queen"
+	name_id = SPECIES_XENO_QUEEN
 	total_health = 250
 	weeds_heal_rate = 5
 	weeds_plasma_rate = 20

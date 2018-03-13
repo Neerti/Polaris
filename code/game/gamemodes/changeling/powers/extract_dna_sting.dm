@@ -39,7 +39,7 @@
 	src.attack_log += text("\[[time_stamp()]\] <font color='orange'> Used DNA extraction sting on [key_name(T)]</font>")
 	msg_admin_attack("[key_name(T)] was DNA extraction stung by [key_name(src)]")
 
-	var/datum/absorbed_dna/newDNA = new(T.real_name, T.dna, T.species.name, T.languages)
+	var/datum/absorbed_dna/newDNA = new(T.real_name, T.dna, T.species.name_id, T.languages)
 	absorbDNA(newDNA)
 
 	feedback_add_details("changeling_powers","ED")

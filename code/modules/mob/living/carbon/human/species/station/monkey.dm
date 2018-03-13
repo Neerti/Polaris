@@ -1,6 +1,7 @@
 /datum/species/monkey
 	name = "Monkey"
 	name_plural = "Monkeys"
+	name_id = SPECIES_MONKEY
 	blurb = "Ook."
 
 	icobase = 'icons/mob/human_races/monkeys/r_monkey.dmi'
@@ -68,6 +69,7 @@
 /datum/species/monkey/tajaran
 	name = "Farwa"
 	name_plural = "Farwa"
+	name_id = SPECIES_MONKEY_TAJ
 
 	icobase = 'icons/mob/human_races/monkeys/r_farwa.dmi'
 	deform = 'icons/mob/human_races/monkeys/r_farwa.dmi'
@@ -81,6 +83,7 @@
 /datum/species/monkey/skrell
 	name = "Neaera"
 	name_plural = "Neaera"
+	name_id = SPECIES_MONKEY_SKRELL
 
 	icobase = 'icons/mob/human_races/monkeys/r_neaera.dmi'
 	deform = 'icons/mob/human_races/monkeys/r_neaera.dmi'
@@ -95,6 +98,7 @@
 /datum/species/monkey/unathi
 	name = "Stok"
 	name_plural = "Stok"
+	name_id = SPECIES_MONKEY_UNATHI
 
 	icobase = 'icons/mob/human_races/monkeys/r_stok.dmi'
 	deform = 'icons/mob/human_races/monkeys/r_stok.dmi'

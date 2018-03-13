@@ -22,7 +22,7 @@ var/global/list/limb_icon_cache = list()
 			if(human.synth_color)
 				s_col = list(human.r_synth, human.g_synth, human.b_synth)
 			return
-	if(species && human.species && species.name != human.species.name)
+	if(species && human.species && !species.same_species(human.species))
 		return
 	if(!isnull(human.s_tone) && (human.species.appearance_flags & HAS_SKIN_TONE))
 		s_tone = human.s_tone
@@ -106,7 +106,7 @@ var/global/list/limb_icon_cache = list()
 	if(owner && owner.gender == MALE)
 		gender = "m"
 
-	icon_cache_key = "[icon_name]_[species ? species.name : "Human"]"
+	icon_cache_key = "[icon_name]_[species ? species.name_id : "[SPECIES_HUMAN]"]"
 
 	if(force_icon)
 		mob_icon = new /icon(force_icon, "[icon_name][gendered_icon ? "_[gender]" : ""]")
