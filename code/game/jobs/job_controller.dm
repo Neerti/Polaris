@@ -16,7 +16,8 @@ var/global/datum/controller/occupations/job_master
 	proc/SetupOccupations(var/faction = "Station")
 		occupations = list()
 		//var/list/all_jobs = typesof(/datum/job)
-		var/list/all_jobs = list(/datum/job/assistant) | using_map.allowed_jobs
+	//	var/list/all_jobs = list(/datum/job/assistant) | using_map.allowed_jobs
+		var/list/all_jobs = using_map.allowed_jobs
 		if(!all_jobs.len)
 			world << "<span class='warning'>Error setting up jobs, no job datums found!</span>"
 			return 0
@@ -353,7 +354,7 @@ var/global/datum/controller/occupations/job_master
 			//Equip custom gear loadout.
 			var/list/custom_equip_slots = list() //If more than one item takes the same slot, all after the first one spawn in storage.
 			var/list/custom_equip_leftovers = list()
-			if(H.client.prefs.gear && H.client.prefs.gear.len && job.title != "Cyborg" && job.title != "AI")
+			if(H.client.prefs.gear && H.client.prefs.gear.len && job.title != "Cyborg" && job.title != "AI" && job.title != "Private Bill")
 				for(var/thing in H.client.prefs.gear)
 					var/datum/gear/G = gear_datums[thing]
 					if(G)
@@ -445,6 +446,9 @@ var/global/datum/controller/occupations/job_master
 				if("Colony Director")
 					var/sound/announce_sound = (ticker.current_state <= GAME_STATE_SETTING_UP)? null : sound('sound/misc/boatswain.ogg', volume=20)
 					captain_announcement.Announce("All hands, [alt_title ? alt_title : "Colony Director"] [H.real_name] on deck!", new_sound=announce_sound)
+				if("Private Bill")
+					var/sound/announce_sound = (ticker.current_state <= GAME_STATE_SETTING_UP)? null : sound('sound/misc/boatswain.ogg', volume=20)
+					captain_announcement.Announce("[H.real_name] is now onboard, and they won't have major bills!", new_sound=announce_sound)
 
 			//Deferred item spawning.
 			if(spawn_in_storage && spawn_in_storage.len)
@@ -482,7 +486,7 @@ var/global/datum/controller/occupations/job_master
 		H << "<B>You are [job.total_positions == 1 ? "the" : "a"] [alt_title ? alt_title : rank].</B>"
 
 		if(job.supervisors)
-			H << "<b>As the [alt_title ? alt_title : rank] you answer directly to [job.supervisors]. Special circumstances may change this.</b>"
+			H << "<b>As the [alt_title ? alt_title : rank] you answer directly to [job.supervisors]. Special circumstances will never change this. Ever.</b>"
 
 		if(job.idtype)
 			spawnId(H, rank, alt_title)
@@ -632,8 +636,8 @@ var/global/datum/controller/occupations/job_master
 			to_chat(C,"Your chosen spawnpoint ([spawnpos.display_name]) is unavailable for your chosen job. Spawning you at the Arrivals shuttle instead.")
 			var/spawning = pick(latejoin)
 			.["turf"] = get_turf(spawning)
-			.["msg"] = "will arrive to the station shortly by shuttle"
+			.["msg"] = "is now riding with Major Bill"
 	else
 		var/spawning = pick(latejoin)
 		.["turf"] = get_turf(spawning)
-		.["msg"] = "has arrived on the station"
+		.["msg"] = "is now riding with Major Bill"

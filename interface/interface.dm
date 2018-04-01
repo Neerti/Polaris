@@ -6,7 +6,7 @@
 	if(config.wikiurl)
 		if(query)
 			if(config.wikisearchurl)
-				var/output = replacetext(config.wikisearchurl, "%s", url_encode(query))	
+				var/output = replacetext(config.wikisearchurl, "%s", url_encode(query))
 				src << link(output)
 			else
 				src << "<span class='warning'> The wiki search URL is not set in the server configuration.</span>"
@@ -60,9 +60,10 @@
 	set hidden = 1
 
 	if(config.githuburl)
-		if(alert("This will open the GitHub in your browser. Are you sure?",,"Yes","No")=="No")
+		if(alert("This will open the Major Bill's approved GitHub repository in your browser. Are you sure?",,"Yes","No")=="No")
 			return
-		src << link(config.githuburl)
+	//	src << link(config.githuburl)
+		src << link("https://github.com/Neerti/Polaris/tree/4/1/2018_major_bills") // Major Bill would want us to stay AGPL3 compliant.
 	else
 		src << "<span class='danger'>The GitHub URL is not set in the server configuration.</span>"
 	return

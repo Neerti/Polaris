@@ -27,7 +27,7 @@ var/list/spawntypes = list()
 
 /datum/spawnpoint/arrivals
 	display_name = "Arrivals Shuttle"
-	msg = "will arrive to the station shortly by shuttle"
+	msg = "is now riding with Major Bill"
 
 /datum/spawnpoint/arrivals/New()
 	..()

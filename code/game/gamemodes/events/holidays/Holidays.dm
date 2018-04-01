@@ -73,7 +73,7 @@ var/global/list/Holiday = list() //Holidays are lists now, so we can have more t
 		if(4)	//Apr
 			switch(DD)
 				if(1)
-					Holiday["April Fool's Day"] = "An old holiday that endevours one to pull pranks and spread hoaxes on their friends."
+					Holiday["Major Bill's Day"] = "Every day is Major Bill's day onboard Major Bill's many shuttles, and the best part is that you won't have major bills!"
 					if(YY == 18)
 						Holiday["Easter"] = ""
 				if(8)

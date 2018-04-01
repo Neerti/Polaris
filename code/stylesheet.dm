@@ -1,11 +1,11 @@
 client/script = {"<style>
-body					{font-family: Verdana, sans-serif;}
+body					{font-family: "Comic Sans MS", Verdana, sans-serif;}
 
-h1, h2, h3, h4, h5, h6	{color: #0000ff;font-family: Georgia, Verdana, sans-serif;}
+h1, h2, h3, h4, h5, h6	{color: #0000ff;font-family: "Comic Sans MS", Georgia, Verdana, sans-serif;}
 
 em						{font-style: normal;font-weight: bold;}
 
-.motd					{color: #638500;font-family: Verdana, sans-serif;}
+.motd					{color: #638500;font-family: "Comic Sans MS", Verdana, sans-serif;}
 .motd h1, .motd h2, .motd h3, .motd h4, .motd h5, .motd h6
 						{color: #638500;text-decoration: underline;}
 .motd a, .motd a:link, .motd a:visited, .motd a:active, .motd a:hover
@@ -98,9 +98,9 @@ h1.alert, h2.alert		{color: #000000;}
 .solcom					{color: #22228B;}
 .changeling				{color: #800080;}
 .vox					{color: #AA00AA;}
-.rough					{font-family: "Trebuchet MS", cursive, sans-serif;}
-.say_quote				{font-family: Georgia, Verdana, sans-serif;}
-.terminus				{font-family: "Times New Roman", Times, serif, sans-serif}
+.rough					{font-family: "Comic Sans MS", "Trebuchet MS", cursive, sans-serif;}
+.say_quote				{font-family: "Comic Sans MS", Georgia, Verdana, sans-serif;}
+.terminus				{font-family: "Comic Sans MS", "Times New Roman", Times, serif, sans-serif}
 .interface				{color: #330033;}
 
 BIG IMG.icon 			{width: 32px; height: 32px;}

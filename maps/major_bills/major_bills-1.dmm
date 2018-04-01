@@ -1,0 +1,86 @@
+"aa" = (/turf/space,/turf/space/transit/west,/area/space)
+"ab" = (/turf/simulated/shuttle/wall,/area/major_bills_shuttle)
+"ac" = (/obj/structure/shuttle/engine/heater{icon_state = "heater"; dir = 4},/turf/simulated/shuttle/plating,/area/major_bills_shuttle)
+"ad" = (/obj/structure/toilet{dir = 4},/obj/machinery/light/small{icon_state = "bulb1"; dir = 8},/obj/effect/landmark{name = "JoinLate"},/turf/simulated/shuttle/floor,/area/major_bills_shuttle)
+"ae" = (/obj/structure/grille,/obj/structure/shuttle/window,/turf/simulated/shuttle/plating,/area/major_bills_shuttle)
+"af" = (/turf/simulated/shuttle/wall/hard_corner,/area/major_bills_shuttle)
+"ag" = (/obj/machinery/door/airlock/external{desc = "It opens and closes. It is stamped with the logo of Major Bill's Transportation"; frequency = 1380; icon_state = "door_locked"; id_tag = null; locked = 1; name = "MBT-540"},/turf/simulated/shuttle/wall/hard_corner,/area/major_bills_shuttle)
+"ah" = (/obj/structure/shuttle/engine/propulsion{icon_state = "propulsion_l"; dir = 8},/turf/simulated/shuttle/plating,/area/major_bills_shuttle)
+"ai" = (/obj/structure/bed/chair,/turf/simulated/shuttle/floor{tag = "icon-floor_white"; icon_state = "floor_white"},/area/major_bills_shuttle)
+"aj" = (/turf/simulated/shuttle/floor{tag = "icon-floor_white"; icon_state = "floor_white"},/area/major_bills_shuttle)
+"ak" = (/obj/machinery/vending/snack{contraband = null; products = list(/obj/item/weapon/reagent_containers/food/snacks/candy = 0, /obj/item/weapon/reagent_containers/food/drinks/dry_ramen = 0, /obj/item/weapon/reagent_containers/food/snacks/chips = 0, /obj/item/weapon/reagent_containers/food/snacks/sosjerky = 0, /obj/item/weapon/reagent_containers/food/snacks/no_raisin = 0, /obj/item/weapon/reagent_containers/food/snacks/spacetwinkie = 0, /obj/item/weapon/reagent_containers/food/snacks/cheesiehonkers = 0, /obj/item/weapon/reagent_containers/food/snacks/tastybread = 0, /obj/item/weapon/reagent_containers/food/snacks/skrellsnacks = 0)},/turf/simulated/shuttle/floor{tag = "icon-floor_white"; icon_state = "floor_white"},/area/major_bills_shuttle)
+"al" = (/obj/machinery/vending/cola{contraband = null; products = list(/obj/item/weapon/reagent_containers/food/drinks/cans/cola = 0, /obj/item/weapon/reagent_containers/food/drinks/cans/space_mountain_wind = 0, /obj/item/weapon/reagent_containers/food/drinks/cans/dr_gibb = 0, /obj/item/weapon/reagent_containers/food/drinks/cans/starkist = 0, /obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle = 0, /obj/item/weapon/reagent_containers/food/drinks/cans/space_up = 0, /obj/item/weapon/reagent_containers/food/drinks/cans/iced_tea = 0, /obj/item/weapon/reagent_containers/food/drinks/cans/grape_juice = 0, /obj/item/weapon/reagent_containers/food/drinks/cans/gingerale = 0)},/turf/simulated/shuttle/floor{tag = "icon-floor_white"; icon_state = "floor_white"},/area/major_bills_shuttle)
+"am" = (/obj/item/weapon/virusdish/random,/obj/item/weapon/virusdish/random,/obj/structure/closet/crate/secure/science,/obj/item/weapon/virusdish/random,/obj/item/weapon/virusdish/random,/turf/simulated/shuttle/floor{tag = "icon-floor_yellow"; icon_state = "floor_yellow"},/area/major_bills_shuttle)
+"an" = (/turf/space/transit/west,/area/space)
+"ao" = (/obj/item/weapon/pickaxe/drill,/obj/machinery/light/small{icon_state = "bulb1"; dir = 1},/turf/simulated/shuttle/floor{tag = "icon-floor_yellow"; icon_state = "floor_yellow"},/area/major_bills_shuttle)
+"ap" = (/turf/simulated/shuttle/floor{tag = "icon-floor_yellow"; icon_state = "floor_yellow"},/area/major_bills_shuttle)
+"aq" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 1; health = 1e+006},/obj/structure/window/reinforced,/obj/structure/window/reinforced{dir = 8},/turf/simulated/shuttle/plating,/area/major_bills_shuttle)
+"ar" = (/obj/machinery/door/airlock/glass,/turf/simulated/shuttle/floor{tag = "icon-floor_yellow"; icon_state = "floor_yellow"},/area/major_bills_shuttle)
+"as" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 1; health = 1e+006},/obj/structure/window/reinforced{dir = 4},/turf/simulated/shuttle/plating,/area/major_bills_shuttle)
+"at" = (/obj/machinery/button{name = "Cargo Hatch"},/turf/simulated/shuttle/wall,/area/major_bills_shuttle)
+"au" = (/obj/machinery/computer,/turf/simulated/shuttle/floor,/area/major_bills_shuttle)
+"av" = (/obj/structure/bed/chair/comfy/brown{dir = 8},/turf/simulated/shuttle/floor{tag = "icon-floor_white"; icon_state = "floor_white"},/area/major_bills_shuttle)
+"aw" = (/obj/machinery/door/blast/regular{name = "Cargo Door"},/turf/simulated/shuttle/wall/hard_corner,/area/major_bills_shuttle)
+"ax" = (/turf/simulated/shuttle/floor,/area/major_bills_shuttle)
+"ay" = (/obj/machinery/button{dir = 4; name = "Cargo Access"},/turf/simulated/shuttle/wall,/area/major_bills_shuttle)
+"az" = (/obj/structure/bed/chair{dir = 1},/turf/simulated/shuttle/floor{tag = "icon-floor_yellow"; icon_state = "floor_yellow"},/area/major_bills_shuttle)
+"aA" = (/obj/machinery/door/airlock/engineering,/turf/simulated/shuttle/floor{tag = "icon-floor_yellow"; icon_state = "floor_yellow"},/area/major_bills_shuttle)
+"aB" = (/obj/structure/bed/chair{dir = 1},/turf/simulated/shuttle/floor{tag = "icon-floor_white"; icon_state = "floor_white"},/area/major_bills_shuttle)
+"aC" = (/obj/machinery/door/airlock,/turf/simulated/shuttle/floor{tag = "icon-floor_white"; icon_state = "floor_white"},/area/major_bills_shuttle)
+"aD" = (/obj/structure/bed/chair,/turf/simulated/shuttle/floor{tag = "icon-floor_yellow"; icon_state = "floor_yellow"},/area/major_bills_shuttle)
+"aF" = (/obj/structure/grille,/obj/structure/window/reinforced,/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced{dir = 1; health = 1e+006},/turf/simulated/shuttle/plating,/area/major_bills_shuttle)
+"aG" = (/obj/structure/grille,/obj/structure/window/reinforced,/obj/structure/window/reinforced{dir = 1; health = 1e+006},/turf/simulated/shuttle/plating,/area/major_bills_shuttle)
+"aH" = (/obj/structure/grille,/obj/structure/window/reinforced,/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced{dir = 1; health = 1e+006},/turf/simulated/shuttle/plating,/area/major_bills_shuttle)
+"aI" = (/obj/structure/table/rack,/obj/item/device/paicard,/turf/simulated/shuttle/floor{tag = "icon-floor_yellow"; icon_state = "floor_yellow"},/area/major_bills_shuttle)
+"aJ" = (/obj/structure/table/rack,/turf/simulated/shuttle/floor{tag = "icon-floor_yellow"; icon_state = "floor_yellow"},/area/major_bills_shuttle)
+"aK" = (/obj/structure/table/rack,/obj/item/weapon/shovel,/turf/simulated/shuttle/floor{tag = "icon-floor_yellow"; icon_state = "floor_yellow"},/area/major_bills_shuttle)
+"aN" = (/obj/machinery/door/airlock/command,/turf/simulated/shuttle/floor{tag = "icon-floor_white"; icon_state = "floor_white"},/area/major_bills_shuttle)
+"aO" = (/obj/effect/landmark/start,/turf/simulated/shuttle/floor{tag = "icon-floor_yellow"; icon_state = "floor_yellow"},/area/major_bills_shuttle)
+"aP" = (/obj/structure/grille,/obj/structure/window/reinforced,/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced{dir = 1},/turf/simulated/shuttle/plating,/area/major_bills_shuttle)
+"aQ" = (/obj/structure/grille,/obj/structure/window/reinforced,/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced{dir = 1},/turf/simulated/shuttle/plating,/area/major_bills_shuttle)
+"aS" = (/obj/structure/table/standard,/obj/machinery/light/small{icon_state = "bulb1"; dir = 4},/turf/simulated/shuttle/floor,/area/major_bills_shuttle)
+"aU" = (/obj/structure/closet/crate/trashcart,/turf/simulated/shuttle/floor{tag = "icon-floor_yellow"; icon_state = "floor_yellow"},/area/major_bills_shuttle)
+"aV" = (/obj/structure/table/rack,/obj/item/clothing/under/mbill,/obj/item/clothing/under/mbill,/obj/item/clothing/under/mbill,/obj/item/clothing/under/mbill,/obj/item/clothing/under/mbill,/obj/item/clothing/under/mbill,/obj/item/clothing/under/mbill,/obj/item/clothing/under/mbill,/obj/item/clothing/under/mbill,/obj/item/clothing/under/mbill,/turf/simulated/shuttle/floor{tag = "icon-floor_white"; icon_state = "floor_white"},/area/major_bills_shuttle)
+"aW" = (/obj/structure/ore_box,/turf/simulated/shuttle/floor{tag = "icon-floor_yellow"; icon_state = "floor_yellow"},/area/major_bills_shuttle)
+"aX" = (/obj/machinery/light/small{icon_state = "bulb1"; dir = 8},/turf/simulated/shuttle/floor{tag = "icon-floor_white"; icon_state = "floor_white"},/area/major_bills_shuttle)
+"aZ" = (/obj/machinery/light/small{icon_state = "bulb1"; dir = 1},/turf/simulated/shuttle/floor{tag = "icon-floor_yellow"; icon_state = "floor_yellow"},/area/major_bills_shuttle)
+"bh" = (/obj/structure/table/rack,/obj/item/clothing/head/soft/mbill,/obj/item/clothing/head/soft/mbill,/obj/item/clothing/head/soft/mbill,/obj/item/clothing/head/soft/mbill,/obj/item/clothing/head/soft/mbill,/obj/item/clothing/head/soft/mbill,/obj/item/clothing/head/soft/mbill,/obj/item/clothing/head/soft/mbill,/obj/item/clothing/head/soft/mbill,/obj/item/clothing/head/soft/mbill,/turf/simulated/shuttle/floor{tag = "icon-floor_white"; icon_state = "floor_white"},/area/major_bills_shuttle)
+"bi" = (/obj/machinery/light/small{icon_state = "bulb1"; dir = 8},/turf/simulated/shuttle/floor{tag = "icon-floor_yellow"; icon_state = "floor_yellow"},/area/major_bills_shuttle)
+"bj" = (/obj/machinery/light/small{icon_state = "bulb1"; dir = 4},/turf/simulated/shuttle/floor{tag = "icon-floor_white"; icon_state = "floor_white"},/area/major_bills_shuttle)
+"bk" = (/obj/structure/table/standard,/obj/item/device/taperecorder,/obj/machinery/light/small{icon_state = "bulb1"; dir = 4},/turf/simulated/shuttle/floor,/area/major_bills_shuttle)
+"bl" = (/obj/machinery/light/small,/turf/simulated/shuttle/floor{tag = "icon-floor_yellow"; icon_state = "floor_yellow"},/area/major_bills_shuttle)
+"bm" = (/obj/machinery/recharge_station,/obj/machinery/light/small{icon_state = "bulb1"; dir = 8},/turf/simulated/shuttle/floor,/area/major_bills_shuttle)
+"bn" = (/obj/item/weapon/contraband/poster,/obj/machinery/light/small,/turf/simulated/shuttle/floor{tag = "icon-floor_yellow"; icon_state = "floor_yellow"},/area/major_bills_shuttle)
+
+(1,1,1) = {"
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabababaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabacahaaaaaaaaaa
+aaaaaaaaaaaaabaeafagagafaeabaeababababababababababaaaaaaaaaa
+aaaaaaanaaababadaCajajabaiaiaiabakalabamaoaUabacahaaaaaaaaaa
+aaaaaaanababababafajajaZapapapaZajajafaqarasabatabaaaaaaaaaa
+aaaaaaanaeauavaSabaXapazaBaBaBazapajaAapapapaZapawaaaaaaaaaa
+aaaaaaanaeaxajajaNajaOabaFaGaHabbibjabaIaJaKapapawaaaaaaaaaa
+aaaaaaanaeauavbkabaXapaDaiaiaiaDapajaAapapapblapawaaaaaaaaaa
+aaaaaaanababababafajajblapapapblajajafaParaQababayaaaaaaaaaa
+aaaaaaanaaababbmaCajajabaBaBaBabaVbhabaWbnaWabacahaaaaaaaaaa
+aaaaaaanaaaaabaeafagagafaeabaeababababababababababaaaaaaaaaa
+aaaaaaanaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabacahaaaaaaaaaa
+aaaaaaanaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabababaaaaaaaaaa
+aaaaaaanananananananananananananananananananananaaaaaaaaaaaa
+aaaaaaanananananananananananananananananananananaaaaaaaaaaaa
+aaaaaaanananananananananananananananananananananaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+"}

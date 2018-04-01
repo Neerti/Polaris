@@ -1015,7 +1015,7 @@ default behaviour is:
 	if(lying != lying_prev)
 		lying_prev = lying
 		update_transform()
-		
+
 	return canmove
 
 // Adds overlays for specific modifiers.
