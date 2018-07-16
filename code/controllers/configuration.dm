@@ -228,6 +228,17 @@ var/list/gamemode_cache = list()
 	var/radiation_resistance_multiplier = 6.5
 	var/radiation_lower_limit = 0.35 //If the radiation level for a turf would be below this, ignore it.
 
+	// New shiny SQLite stuff.
+	// The basics.
+	var/sqlite_enabled = FALSE // If it should even be active. SQLite can be ran alongside other databases but you should not have them do the same functions.
+	var/sqlite_path = "data/sqlite/sqlite.db" // Location of where the .db file is.
+	// In-Game Feedback.
+	var/sqlite_feedback = FALSE // Feedback cannot be submitted if this is false.
+	var/sqlite_feedback_privacy = FALSE // If true, feedback submitted will have its author name be obfuscated. This is not 100% foolproof but can stop admins, even with VV.
+	var/sqlite_feedback_pepper_file = "data/sqlite/pepper.txt" // Used to harden the hash against admins feeding a list of ckeys into an MD5 hasher. Does nothing if privacy is off.
+	var/sqlite_feedback_cooldown = 0 // How long one must wait, in days, to submit another feedback form. Used to help prevent spam, especially with privacy active. 0 = No limit.
+
+
 /datum/configuration/New()
 	var/list/L = typesof(/datum/game_mode) - /datum/game_mode
 	for (var/T in L)
@@ -747,6 +758,24 @@ var/list/gamemode_cache = list()
 
 				if ("paranoia_logging")
 					config.paranoia_logging = 1
+
+				if("sqlite_enabled")
+					sqlite_enabled = TRUE
+
+				if("sqlite_path")
+					sqlite_path = value
+
+				if("sqlite_feedback")
+					sqlite_feedback = TRUE
+
+				if("sqlite_feedback_privacy")
+					sqlite_feedback_privacy = TRUE
+
+				if("sqlite_feedback_cooldown")
+					sqlite_feedback_cooldown = value
+
+				if("sqlite_feedback_pepper_file")
+					sqlite_feedback_pepper_file = value
 
 				else
 					log_misc("Unknown setting in configuration: '[name]'")
