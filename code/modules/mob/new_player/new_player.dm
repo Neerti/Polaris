@@ -66,9 +66,12 @@
 	else
 		output += "<p><a href='byond://?src=\ref[src];shownews=1'>Show News</A></p>"
 
+	if(sqlite_can_submit_feedback(client))
+		output += "<p><a href='byond://?src=\ref[src];give_feedback=1'>Give Feedback</A></p>"
+
 	output += "</div>"
 
-	panel = new(src, "Welcome","Welcome", 210, 280, src)
+	panel = new(src, "Welcome","Welcome", 210, 300, src)
 	panel.set_window_options("can_close=0")
 	panel.set_content(output)
 	panel.open()
@@ -290,6 +293,18 @@
 		show_hidden_jobs = !show_hidden_jobs
 		LateChoices()
 
+	if(href_list["give_feedback"])
+		display_feedback_window()
+		return
+
+	if(href_list["edit_feedback"])
+		var/list/unboxed_data = params2list(href_list["feedback_content"])
+		edit_feedback(unboxed_data.len ? unboxed_data[1] : "")
+
+	if(href_list["submit_feedback"])
+		var/list/unboxed_data = params2list(href_list["feedback_content"])
+		submit_feedback(unboxed_data.len ? unboxed_data[1] : "")
+
 /mob/new_player/proc/handle_server_news()
 	if(!client)
 		return
@@ -308,6 +323,96 @@
 		var/datum/browser/popup = new(src, "Server News", "Server News", 450, 300, src)
 		popup.set_content(dat)
 		popup.open()
+
+// Builds the window for players to review their feedback.
+/mob/new_player/proc/display_feedback_window(var/written_content)
+	if(!client)
+		return
+	if(!sqlite_can_submit_feedback(client, silent = FALSE))
+		return
+
+	var/list/dat = list("<html><body><center>")
+	dat += "<font size='2'>"
+	dat += "Here, you can write some feedback for the server."
+	dat += "Note that HTML is NOT supported!"
+	dat += "Click the edit button to begin writing"
+
+	if(config.sqlite_feedback_privacy)
+		dat += "Your BYOND key (username) will be hashed to obscure it, before being recorded. \
+		along with the feedback."
+	else
+		dat += "Your BYOND key (username) will be recorded along with the feedback."
+
+	if(config.sqlite_feedback_cooldown)
+		dat += "<i>Please note that you will have to wait [config.sqlite_feedback_cooldown] day\s before \
+		being able to write more feedback after submitting.</i>"
+
+	dat += "</font>"
+	dat += "<hr>"
+
+	dat += "<h2>Preview</h2>"
+	dat += "Submitter: [sqlite_feedback_get_author(client.ckey, sqlite_feedback_get_pepper())]"
+	if(written_content)
+		dat += written_content
+	else
+		dat += "<i>\[Feedback goes here...\]</i>"
+
+	dat += "<hr>"
+	dat += "<p>" // We pack the user's writing inside list2params() to seperate the block of text from the rest of the href statement.
+	dat += "<a href='byond://?src=\ref[src];edit_feedback=1;feedback_content=[list2params(list(written_content))]'>Edit</A>"
+	dat += "<a href='byond://?src=\ref[src];submit_feedback=1;feedback_content=[list2params(list(written_content))]'>Submit</A>"
+	dat += "</p>"
+
+	dat += "</center></body></html>"
+
+	var/datum/browser/popup = new(src, "feedback_window", "Server Feedback", 480, 520, src)
+	popup.set_content(dat.Join("<br>"))
+	popup.open()
+
+// Modifies the feedback displayed inside display_feedback_window.
+/mob/new_player/proc/edit_feedback(var/written_content)
+	var/text = input(client, "Please write your feedback here.", "Feedback Edit", written_content) as null|message
+	text = sanitize(text, max_length = MAX_FEEDBACK_LENGTH)
+	if(!text) // They hit cancel or it was super invalid.
+		to_chat(src, span("warning", "It appears you didn't write anything, or it was invalid."))
+		return
+
+	display_feedback_window(text) // Refresh the window with new information.
+
+// Submits the feedback to the database, for future viewing by staff.
+/mob/new_player/proc/submit_feedback(var/written_content)
+	if(written_content)
+		if(alert(src, "Are you finished, and wish to submit your feedback?", "Confirm Submission", "No", "Yes") == "No")
+			return
+		sqlite_insert_feedback(client, written_content)
+		usr << browse(null,"window=feedback_window") // Close the window.
+
+
+
+	/*
+	var/list/message = list("Please write some feedback for the server here. \
+	Please note that HTML is NOT supported.")
+
+	if(config.sqlite_feedback_privacy)
+		message += "Your BYOND key (username) will be hashed to obscure it, before being recorded. \
+		along with the feedback."
+	else
+		message += "Your BYOND key (username) will be recorded along with the feedback."
+
+	if(config.sqlite_feedback_cooldown)
+		message += "Please note that you will have to wait [config.sqlite_feedback_cooldown] day\s before \
+		being able to write more feedback."
+
+	var/text = input(client, message.Join("\n"), "Feedback Submission.") as null|message
+	text = sanitize(text, max_length = MAX_FEEDBACK_LENGTH)
+	if(!text) // They hit cancel or it was super invalid.
+		return
+
+	// Now shove it in the database.
+	sqlite_insert_feedback(client, text)
+	*/
+
+
 
 /mob/new_player/proc/IsJobAvailable(rank)
 	var/datum/job/job = job_master.GetJob(rank)

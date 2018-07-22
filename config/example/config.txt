@@ -408,3 +408,33 @@ STARLIGHT 0
 
 ## Uncomment to enable Paranoia Logging. This will notify admins and write to a file any time a new player (byond or your server) connects.
 # PARANOIA_LOGGING
+
+## -SQLite Options-
+## Uncomment to enable the use of SQLite. This does nothing by itself but other features that require SQLite will need this to be on.
+## This can safely run alongside a MySQL database if they are powering seperate features.
+# SQLITE_ENABLED
+
+## Uncomment to enable a SQLite-powered in-game feedback system.
+## SQLite must be enabled for this to function.
+## It offers a means for players to be able to give feedback about the server.
+## The benefit of doing so in-game is that the quality of feedback received will likely be superior, as it self-selects for people who care enough to join the game.
+# SQLITE_FEEDBACK
+
+## Uncomment to add a layer of privacy to player feedback, by hashing their key.
+## This makes the reviewing staff member not be able
+## A 'pepper.txt' containing a secret string must exist in the /data/sqlite folder.
+## If this is turned off, their key will not be obfuscated.
+## Note that changing this does not retroactively change past submissions.
+# SQLITE_FEEDBACK_PRIVACY
+
+## Determines the 'cooldown' inbetween submissions, in days.
+## This is recommended if privacy is active, to prevent spam floods.
+## Less needed if feedback is not anonymous, since you can just ban spammers.
+## Setting to zero means no rate limiting.
+SQLITE_FEEDBACK_COOLDOWN 0
+
+## Determines if feedback should be restricted based on how recently someone first joined.
+## This is very unreliable due to how the age system works in general, but it might still be helpful.
+## Set this to how many days you want someone to have to wait when they first join.
+## Setting to zero will disable this restriction.
+SQLITE_FEEDBACK_MIN_AGE 7

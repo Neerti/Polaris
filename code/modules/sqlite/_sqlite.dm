@@ -8,7 +8,7 @@ var/database/sqlite_db
 
 	if(!sqlite_db)
 		// Create or load the database.
-		sqlite_db = new("[config.sqlite_path]")
+		sqlite_db = new("data/sqlite/sqlite.db") // The path has to be hardcoded or BYOND silently fails.
 
 		world.log << "SQLite database loaded."
 

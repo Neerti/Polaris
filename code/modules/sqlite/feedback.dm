@@ -24,7 +24,6 @@
 	// Sanitize everything to avoid sneaky stuff.
 	var/sqlite_author = sql_sanitize_text(author_name)
 	var/sqlite_content = sql_sanitize_text(content)
-//	var/sqlite_time = time2text(world.realtime, "YYYY-MM-DD hh:mm:ss")
 
 	establish_sqlite_connection()
 	if(!sqlite_db)
@@ -46,9 +45,11 @@
 
 	if(sqlite_check_for_errors(query, "sqlite_insert_feedback"))
 		to_chat(author, span("warning", "Unfortunately, an error occured with submitting your feedback to the database."))
+	else
+		to_chat(author, span("notice", "Your feedback has been submitted."))
 
 // This hashes the submitter's ckey, in an effort to encourage more honest feedback.
-// Might be worth investing effort in an external hasher to use something better like SHA3 later.
+// Might be worth investing effort in an external hasher to use something better later.
 // Note that if this returns false, the user does not wish to continue submitting.
 /proc/sqlite_feedback_obfuscate_name(client/author)
 	var/submitter_name = ckey(author.key)
@@ -101,28 +102,70 @@
 	return key
 
 // Checks if a client is allowed to give feedback.
-/proc/sqlite_can_submit_feedback(client/C)
+/proc/sqlite_can_submit_feedback(client/C, silent = TRUE)
 	if(!C)
 		return FALSE
+
+	// Is it on?
+	if(!config.sqlite_enabled || !config.sqlite_feedback)
+		if(!silent)
+			to_chat(C, span("warning", "Unfortunately, it appears feedback is \
+			disabled for this server."))
+		return FALSE
+
+	establish_sqlite_connection()
+
+	// Check if the player age restrictions are active, and if so, if this player is too new.
+	if(config.sqlite_feedback_min_age)
+		if(get_player_age(C.key) < config.sqlite_feedback_min_age)
+			if(!silent)
+				to_chat(C, span("warning", "You have first joined the server too recently. \n\
+				Try again in about [config.sqlite_feedback_min_age - get_player_age(C.key)] days."))
+			return FALSE
 
 	// Check if rate limiting is on, and if so, if its too soon to give more feedback.
 	if(config.sqlite_feedback_cooldown > 0)
 		// First query to get the most recent time the client has submitted feedback.
 		var/database/query/query = new(
 			"SELECT max(time_of_submission) \
+			AS 'most_recent_datetime' \
 			FROM feedback \
-			WHERE (author == ?);", sqlite_feedback_get_author(C.ckey, sqlite_feedback_get_pepper())
+			WHERE (author == ?);",
+			sqlite_feedback_get_author(C.ckey, sqlite_feedback_get_pepper())
 			)
 		query.Execute(sqlite_db)
 		sqlite_check_for_errors(query, "can submit feedback (1)")
-		if(query.NextRow()) // A previous submission was done with this author if this is true.
+		// It is possible this is their first time. If so, there won't be a next row.
 
-	/*
-	SELECT max(time_of_submission)
-	FROM feedback
-	WHERE author == "5ea0e63a058b413bd89a5953f7277e7e";
-	*/
+		if(query.NextRow()) // If this is true, the user has submitted feedback at least once.
+			var/list/row_data = query.GetRowData()
+			var/last_submission_datetime = row_data["most_recent_datetime"]
 
+			// Now we have the datetime, we need to do something to compare it.
+			// Second query is to calculate the difference between two datetimes.
+			// This is done on the SQLite side because parsing datetimes with BYOND is probably a bad idea.
+			query = new(
+				"SELECT julianday('now') - julianday(?) \
+				AS 'datediff';",
+				last_submission_datetime
+				)
+			query.Execute(sqlite_db)
+			sqlite_check_for_errors(query, "can submit feedback (2)")
+
+			query.NextRow()
+			row_data = query.GetRowData()
+			var/datediff = row_data["datediff"]
+
+			// Now check if it's too soon to give more feedback.
+			if(text2num(datediff) < config.sqlite_feedback_cooldown) // Too soon.
+				if(!silent)
+					to_chat(C, span("warning", "It is too soon to submit more feedback. \n\
+						The server is configured to allow feedback submission once every [config.sqlite_feedback_cooldown] days per user. \n\
+						Please wait another [round(config.sqlite_feedback_cooldown - datediff, 0.1)] days."))
+				return FALSE
+
+	// All is well.
+	return TRUE
 
 
 
@@ -144,6 +187,10 @@
 /*
 	var/database/query/query = new("SELECT id FROM ban WHERE (id == ? AND expiration_datetime < datetime('now'));", data["id"])
 */
+
+/client/verb/test_feedback_db_cooldown()
+	establish_sqlite_connection()
+	src << "Cooldown check returned: [sqlite_can_submit_feedback(src)]."
 
 /client/verb/test_feedback_db_submit()
 	var/text = input(usr, "Write some test text here.", "Testing") as null|message
