@@ -4,15 +4,15 @@
 
 /datum/file/symbolic_link
 	file_type = "symbolic link"
-	var/datum/weakref/linked = null	// Weakref to the file we are linked to.
+	var/weakref/linked = null	// Weakref to the file we are linked to.
 
 /datum/file/symbolic_link/stdin(input)
 	var/datum/file/real_file = linked.resolve()
 	if(istype(real_file))
-		return linked.stdin(input)
+		return real_file.stdin(input)
 	return FALSE
 
-/datum/file/symbolic_link/New(new_name, /datum/file/to_link)
+/datum/file/symbolic_link/New(new_name, datum/file/to_link)
 	linked = weakref(to_link)
 	..()
 
