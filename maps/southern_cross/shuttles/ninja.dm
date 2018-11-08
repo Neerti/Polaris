@@ -26,7 +26,7 @@
 	dock_target = "ninja_base"
 
 	routes_to_make = list(
-		/datum/shuttle_destination/ninja/sky = 15 SECONDS,
+		/datum/shuttle_destination/ninja/sky = 30 SHUTTLE_SECONDS,
 	)
 
 /datum/shuttle_destination/ninja/orbit
@@ -35,10 +35,10 @@
 	preferred_interim_area = /area/ninja_dojo/transit
 
 	routes_to_make = list(
-		/datum/shuttle_destination/ninja/outside_SC_1d = 30 SECONDS,
-		/datum/shuttle_destination/ninja/outside_SC_2d = 30 SECONDS,
-		/datum/shuttle_destination/ninja/outside_SC_3d = 30 SECONDS,
-		/datum/shuttle_destination/ninja/sky = 30 SECONDS,
+		/datum/shuttle_destination/ninja/outside_SC_1d = 30 SHUTTLE_SECONDS,
+		/datum/shuttle_destination/ninja/outside_SC_2d = 30 SHUTTLE_SECONDS,
+		/datum/shuttle_destination/ninja/outside_SC_3d = 30 SHUTTLE_SECONDS,
+		/datum/shuttle_destination/ninja/sky = 30 SHUTTLE_SECONDS,
 	)
 
 /datum/shuttle_destination/ninja/outside_SC_1d
@@ -95,7 +95,7 @@
 	preferred_interim_area = /area/ninja_dojo/sky_transit
 
 	routes_to_make = list(
-		/datum/shuttle_destination/ninja/planet = 15 SECONDS
+		/datum/shuttle_destination/ninja/planet = 30 SHUTTLE_SECONDS
 	)
 
 /datum/shuttle_destination/ninja/planet

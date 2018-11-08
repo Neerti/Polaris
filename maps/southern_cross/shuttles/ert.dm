@@ -59,10 +59,10 @@
 	preferred_interim_area = /area/shuttle/response_ship/transit
 
 	routes_to_make = list(
-		/datum/shuttle_destination/ert/outside_SC_1d = 30 SECONDS,
-		/datum/shuttle_destination/ert/outside_SC_2d = 30 SECONDS,
-		/datum/shuttle_destination/ert/outside_SC_3d = 30 SECONDS,
-		/datum/shuttle_destination/ert/sky = 30 SECONDS
+		/datum/shuttle_destination/ert/outside_SC_1d = 30 SHUTTLE_SECONDS,
+		/datum/shuttle_destination/ert/outside_SC_2d = 30 SHUTTLE_SECONDS,
+		/datum/shuttle_destination/ert/outside_SC_3d = 30 SHUTTLE_SECONDS,
+		/datum/shuttle_destination/ert/sky = 30 SHUTTLE_SECONDS
 	)
 
 /datum/shuttle_destination/ert/outside_SC_1d
@@ -119,7 +119,7 @@
 	preferred_interim_area = /area/shuttle/response_ship/sky_transit
 
 	routes_to_make = list(
-		/datum/shuttle_destination/ert/planet = 15 SECONDS
+		/datum/shuttle_destination/ert/planet = 15 SHUTTLE_SECONDS
 	)
 
 /datum/shuttle_destination/ert/planet

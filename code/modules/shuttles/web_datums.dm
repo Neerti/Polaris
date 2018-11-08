@@ -9,15 +9,16 @@
 	var/datum/shuttle_destination/start = null	// One of the two sides of this route.  Start just means it was the creator of this route.
 	var/datum/shuttle_destination/end = null	// The second side.
 	var/area/interim = null						// Where the shuttle sits during the movement.  Make sure no other shuttle shares this or Very Bad Things will happen.
-	var/travel_time = 0							// How long it takes to move from start to end, or end to start.  Set to 0 for instant travel.
+//	var/travel_time = 0							// How long it takes to move from start to end, or end to start.  Set to 0 for instant travel.
+	var/travel_distance = 0						// How arbitrarily long the route is from start to end, or end to start.  Set to 0 for instant travel. Measured in 'AUD'.
 	var/one_way = FALSE							// If true, you can't travel from end to start.
 
-/datum/shuttle_route/New(var/_start, var/_end, var/_interim, var/_time = 0, var/_oneway = FALSE)
+/datum/shuttle_route/New(var/_start, var/_end, var/_interim, var/_distance = 0, var/_oneway = FALSE)
 	start = _start
 	end = _end
 	if(_interim)
 		interim = locate(_interim)
-	travel_time = _time
+	travel_distance = _distance
 	one_way = _oneway
 
 /datum/shuttle_route/Destroy()
@@ -135,14 +136,14 @@
 	else
 		global_announcer.autosay(get_arrival_message(),(announcer ? announcer : "[using_map.boss_name]"))
 
-/datum/shuttle_destination/proc/link_destinations(var/datum/shuttle_destination/other_place, var/area/interim_area, var/travel_time = 0)
+/datum/shuttle_destination/proc/link_destinations(var/datum/shuttle_destination/other_place, var/area/interim_area, var/travel_distance = 0)
 	// First, check to make sure this doesn't cause a duplicate route.
 	for(var/datum/shuttle_route/R in routes)
 		if(R.start == other_place || R.end == other_place)
 			return
 
 	// Now we can connect them.
-	var/datum/shuttle_route/new_route = new(src, other_place, interim_area, travel_time)
+	var/datum/shuttle_route/new_route = new(src, other_place, interim_area, travel_distance)
 	routes += new_route
 	other_place.routes += new_route
 
@@ -253,8 +254,13 @@
 		return FALSE
 	future_destination = R.get_other_side(current_destination)
 
-	var/travel_time = R.travel_time * my_shuttle.flight_time_modifier * 2 // Autopilot is less efficent than having someone flying manually.
-	if(R.interim && R.travel_time > 0)
+//	var/travel_time = R.travel_time * my_shuttle.flight_time_modifier * 2 // Autopilot is less efficent than having someone flying manually.
+	var/thrust_power = 100 // Todo: Get all thruster mountpoints and add them up here.
+	if(thrust_power <= 0) // Avoid a division by zero error.
+		return FALSE
+
+	var/travel_time = my_shuttle.calculate_travel_time(R)
+	if(R.interim && travel_time > 0)
 		my_shuttle.long_jump(my_shuttle.current_area, future_destination.my_area, R.interim, travel_time / 10)
 	else
 		my_shuttle.short_jump(my_shuttle.current_area, future_destination.my_area)

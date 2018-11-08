@@ -14,6 +14,7 @@
 	can_autopilot = TRUE
 	autopilot_delay = 60
 	autopilot_first_delay = 300 // Ten minutes at roundstart. Two minutes otherwise.
+	component_based = TRUE
 
 /datum/shuttle_web_master/shuttle1
 	destination_class = /datum/shuttle_destination/shuttle1
@@ -56,6 +57,7 @@
 	can_autopilot = TRUE
 	autopilot_delay = 60
 	autopilot_first_delay = 380 // Twelve and a half minutes at roundstart. Two minutes otherwise. This should leave when the first shuttle arrives at the outpost.
+	component_based = TRUE
 
 /datum/shuttle_web_master/shuttle2
 	destination_class = /datum/shuttle_destination/shuttle2
@@ -129,7 +131,7 @@
 	preferred_interim_area = /area/shuttle/shuttle1/transit
 
 	routes_to_make = list(
-		/datum/shuttle_destination/shuttle1/sif_orbit = 30 SECONDS,
+		/datum/shuttle_destination/shuttle1/sif_orbit = 30 SHUTTLE_SECONDS,
 		/datum/shuttle_destination/shuttle1/docked_SC = 0
 	)
 
@@ -139,7 +141,7 @@
 	preferred_interim_area = /area/shuttle/shuttle2/transit
 
 	routes_to_make = list(
-		/datum/shuttle_destination/shuttle2/sif_orbit = 30 SECONDS,
+		/datum/shuttle_destination/shuttle2/sif_orbit = 30 SHUTTLE_SECONDS,
 		/datum/shuttle_destination/shuttle2/docked_SC = 0
 	)
 
@@ -182,7 +184,7 @@
 	preferred_interim_area = /area/shuttle/shuttle1/transit
 
 	routes_to_make = list(
-		/datum/shuttle_destination/shuttle1/sky = 30 SECONDS
+		/datum/shuttle_destination/shuttle1/sky = 30 SHUTTLE_SECONDS
 	)
 
 /datum/shuttle_destination/shuttle2/sif_orbit
@@ -191,7 +193,7 @@
 	preferred_interim_area = /area/shuttle/shuttle2/transit
 
 	routes_to_make = list(
-		/datum/shuttle_destination/shuttle2/sky = 30 SECONDS
+		/datum/shuttle_destination/shuttle2/sky = 30 SHUTTLE_SECONDS
 	)
 
 
@@ -201,8 +203,8 @@
 	preferred_interim_area = /area/shuttle/shuttle1/sky_transit
 
 	routes_to_make = list(
-		/datum/shuttle_destination/shuttle1/main_base = 15 SECONDS,
-		/datum/shuttle_destination/shuttle1/mining_base = 15 SECONDS
+		/datum/shuttle_destination/shuttle1/main_base = 30 SHUTTLE_SECONDS,
+		/datum/shuttle_destination/shuttle1/mining_base = 30 SHUTTLE_SECONDS
 	)
 
 /datum/shuttle_destination/shuttle2/sky
@@ -211,8 +213,8 @@
 	preferred_interim_area = /area/shuttle/shuttle2/sky_transit
 
 	routes_to_make = list(
-		/datum/shuttle_destination/shuttle2/main_base = 15 SECONDS,
-		/datum/shuttle_destination/shuttle2/mining_base = 15 SECONDS
+		/datum/shuttle_destination/shuttle2/main_base = 30 SHUTTLE_SECONDS,
+		/datum/shuttle_destination/shuttle2/mining_base = 30 SHUTTLE_SECONDS
 	)
 
 

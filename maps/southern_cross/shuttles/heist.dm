@@ -35,10 +35,10 @@
 	preferred_interim_area = /area/skipjack_station/transit
 
 	routes_to_make = list(
-		/datum/shuttle_destination/heist/outside_SC_1d = 30 SECONDS,
-		/datum/shuttle_destination/heist/outside_SC_2d = 30 SECONDS,
-		/datum/shuttle_destination/heist/outside_SC_3d = 30 SECONDS,
-		/datum/shuttle_destination/heist/sky = 30 SECONDS,
+		/datum/shuttle_destination/heist/outside_SC_1d = 30 SHUTTLE_SECONDS,
+		/datum/shuttle_destination/heist/outside_SC_2d = 30 SHUTTLE_SECONDS,
+		/datum/shuttle_destination/heist/outside_SC_3d = 30 SHUTTLE_SECONDS,
+		/datum/shuttle_destination/heist/sky = 30 SHUTTLE_SECONDS,
 	)
 
 /datum/shuttle_destination/heist/outside_SC_1d
@@ -95,7 +95,7 @@
 	preferred_interim_area = /area/skipjack_station/sky_transit
 
 	routes_to_make = list(
-		/datum/shuttle_destination/heist/planet = 15 SECONDS
+		/datum/shuttle_destination/heist/planet = 30 SHUTTLE_SECONDS
 	)
 
 /datum/shuttle_destination/heist/planet

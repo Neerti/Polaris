@@ -18,12 +18,17 @@
 	category = /datum/shuttle/web_shuttle
 	var/list/obj/item/clothing/head/pilot/helmets
 
+	var/component_based = FALSE // If true, new shuttle components and mechanics are used to determine certain characteristics and functionality.
+	var/selected_speed = SHUTTLE_SPEED_NORMAL
+	var/list/mount_points = list()
+
 /datum/shuttle/web_shuttle/New()
 	current_area = locate(current_area)
 	web_master = new web_master_type(src)
 	build_destinations()
 	if(autopilot)
 		flags |= SHUTTLE_FLAGS_PROCESS
+		selected_speed = SHUTTLE_SPEED_SLOW
 		if(autopilot_first_delay)
 			autopilot_delay = autopilot_first_delay
 	if(!visible_name)
@@ -65,6 +70,60 @@
 
 /datum/shuttle/web_shuttle/proc/build_destinations()
 	return
+
+// Returns a time value for how long it will take to go traverse a route.
+// If null is returned, something weird happened like the ship not having any thrusters.
+/datum/shuttle/web_shuttle/proc/calculate_travel_time(datum/shuttle_route/R)
+	ASSERT(R)
+
+	// Better shuttles linearly increase the 'speed' of the shuttle.
+	var/speed = get_shuttle_speed()
+
+	speed *= get_selected_speed_modifier() // Apply modifier from going fast/slow.
+
+	if(speed <= 0) // Avoid a division by zero error.
+		return null
+
+	// Superior FTL drives reduce the distance from the destination.
+	var/distance_to_destination = R.travel_distance * get_ftl_modifier()
+
+	var/travel_time = (distance_to_destination / speed)
+
+	travel_time *= flight_time_modifier // Finally, apply the legacy variable. It's kept in case admins want to play with it with VV, or for ships w/o new components..
+
+	return travel_time SECONDS
+
+/datum/shuttle/web_shuttle/proc/get_selected_speed_modifier()
+	switch(selected_speed)
+		if(SHUTTLE_SPEED_SLOW)
+			return 0.5
+		if(SHUTTLE_SPEED_NORMAL)
+			return 1.0
+		if(SHUTTLE_SPEED_HYPER)
+			return 2.0
+
+// The physical shuttle's thrusters influence how long it takes to go somewhere.
+/datum/shuttle/web_shuttle/proc/get_shuttle_speed()
+	if(!component_based)
+		return 100
+
+	var/speed = 0
+
+	for(var/obj/structure/shuttle_mount_point/thruster/MP in mount_points)
+		if(MP.attached_component && MP.attached_component.active)
+			var/obj/structure/shuttle_component/thruster/T = MP.attached_component
+			speed += T.get_thrust_power()
+
+	return speed
+
+// Better FTL drives "reduce the distance" between two destinations, making it so the shuttle arrives sooner.
+/datum/shuttle/web_shuttle/proc/get_ftl_modifier()
+	if(!component_based)
+		return 1.0
+
+	// Todo: Get the FTL drive values.
+	return 1.0
+
 
 /datum/shuttle/web_shuttle/process()
 	update_helmets()
@@ -130,11 +189,20 @@
 		autopilot = TRUE
 		autopilot_delay = initial(autopilot_delay)
 		shuttle_controller.process_shuttles += src
+		selected_speed = SHUTTLE_SPEED_SLOW
 	else
 		if(!autopilot)
 			return
 		autopilot = FALSE
 		shuttle_controller.process_shuttles -= src
+
+/datum/shuttle/web_shuttle/proc/adjust_speed(new_setting)
+	if(autopilot)
+		return FALSE // Autopilot speed is locked (generally to SLOW).
+	if(!component_based && new_setting == SHUTTLE_SPEED_HYPER)
+		return FALSE // There is no downside otherwise if the ship can't be damaged.
+
+	selected_speed = new_setting
 
 /datum/shuttle/web_shuttle/proc/autopilot_say(message) // Makes the autopilot 'talk' to the passengers.
 	var/padded_message = "<span class='game say'><span class='name'>shuttle autopilot</span> states, \"[message]\"</span>"
@@ -153,6 +221,9 @@
 		visible_name = sanitized_name
 	else
 		to_chat(user, "<span class='warning'>The name you supplied was invalid. Try another name.</span>")
+
+
+
 
 /obj/machinery/computer/shuttle_control/web
 	name = "flight computer"
@@ -279,15 +350,17 @@
 	var/list/R = shuttle.web_master.get_available_routes()
 	for (var/i = 1 to length(R))
 		var/datum/shuttle_route/route = R[i]
-		var/travel_time = null
-		var/travel_modifier = shuttle.flight_time_modifier
-		if(route.travel_time == 0)
-			travel_time = "Instant"
-		else if( (route.travel_time * travel_modifier) >= 1 MINUTE)
-			travel_time = "[ (route.travel_time * travel_modifier) / (1 MINUTE)] minute\s"
+		var/travel_time_value = shuttle.calculate_travel_time(route)
+		var/travel_time_string = null
+		if(isnull(travel_time_value))
+			travel_time_string = "CANNOT MOVE"
+		else if(travel_time_value == 0)
+			travel_time_string = "Instant"
+		else if(travel_time_value >= 1 MINUTE)
+			travel_time_string = "[travel_time_value / (1 MINUTE)] minute\s"
 		else
-			travel_time = "[ (route.travel_time * travel_modifier) / (1 SECOND)] second\s"
-		routes.Add(list(list("name" = html_encode(capitalize(route.display_route(shuttle.web_master.current_destination) )), "index" = i, "travel_time" = travel_time)))
+			travel_time_string = "[travel_time_value / (1 SECOND)] second\s"
+		routes.Add(list(list("name" = html_encode(capitalize(route.display_route(shuttle.web_master.current_destination) )), "index" = i, "travel_time" = travel_time_string)))
 
 
 	var/shuttle_location = shuttle.web_master.current_destination.name // Destination related, not loc.
@@ -347,7 +420,8 @@
 		"autopilot" = shuttle.autopilot ? 1 : 0,
 		"can_rename" = shuttle.can_rename ? 1 : 0,
 		"doors" = doors,
-		"sensors" = sensors
+		"sensors" = sensors,
+		"selected_speed" = num2text(shuttle.selected_speed)
 	)
 
 	ui = GLOB.nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
@@ -411,6 +485,9 @@
 	if(href_list["autopilot_off_command"])
 		WS.adjust_autopilot(FALSE)
 
+	if(href_list["speed"])
+		WS.adjust_speed(text2num(href_list["speed"]))
+
 	if(href_list["traverse"])
 		if(WS.autopilot)
 			to_chat(usr, "<span class='warning'>The autopilot must be disabled before you can control the vessel manually.</span>")
@@ -440,9 +517,13 @@
 		to_chat(usr, "<span class='notice'>[WS.visible_name] flight computer received command.</span>")
 		WS.web_master.reset_autopath() // Deviating from the path will almost certainly confuse the autopilot, so lets just reset its memory.
 
-		var/travel_time = new_route.travel_time * WS.flight_time_modifier
+		var/travel_time = WS.calculate_travel_time(new_route)
 
-		if(new_route.interim && new_route.travel_time)
+		if(isnull(travel_time)) // We literally have no engines or something.
+			to_chat(usr, span("warning", "[WS.visible_name] is inoperable."))
+			return
+
+		if(new_route.interim && travel_time)
 			WS.long_jump(WS.current_area, target_destination.my_area, new_route.interim, travel_time / 10)
 		else
 			WS.short_jump(WS.current_area, target_destination.my_area)

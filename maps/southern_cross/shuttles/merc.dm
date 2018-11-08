@@ -57,7 +57,7 @@
 	dock_target = "merc_base"
 
 	routes_to_make = list(
-		/datum/shuttle_destination/syndie/orbit = 1.5 MINUTES,
+		/datum/shuttle_destination/syndie/orbit = 1.5 SHUTTLE_SECONDS,
 	)
 
 /datum/shuttle_destination/syndie/orbit
@@ -66,10 +66,10 @@
 	preferred_interim_area = /area/syndicate_station/transit
 
 	routes_to_make = list(
-		/datum/shuttle_destination/syndie/outside_SC_1d = 30 SECONDS,
-		/datum/shuttle_destination/syndie/outside_SC_2d = 30 SECONDS,
-		/datum/shuttle_destination/syndie/outside_SC_3d = 30 SECONDS,
-		/datum/shuttle_destination/syndie/sky = 30 SECONDS
+		/datum/shuttle_destination/syndie/outside_SC_1d = 30 SHUTTLE_SECONDS,
+		/datum/shuttle_destination/syndie/outside_SC_2d = 30 SHUTTLE_SECONDS,
+		/datum/shuttle_destination/syndie/outside_SC_3d = 30 SHUTTLE_SECONDS,
+		/datum/shuttle_destination/syndie/sky = 30 SHUTTLE_SECONDS
 	)
 
 /datum/shuttle_destination/syndie/outside_SC_1d
@@ -125,7 +125,7 @@
 	preferred_interim_area = /area/syndicate_station/sky_transit
 
 	routes_to_make = list(
-		/datum/shuttle_destination/syndie/planet = 15 SECONDS
+		/datum/shuttle_destination/syndie/planet = 30 SHUTTLE_SECONDS
 	)
 
 /datum/shuttle_destination/syndie/planet

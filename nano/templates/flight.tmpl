@@ -44,6 +44,11 @@
 			{{else}}
 				<span class="bad">ERROR</span>
 			{{/if}}
+			<span style="float:right">
+				{{:helper.link('Slow', 'play', {'speed' : 1}, (data.selected_speed == 1)? 'selected' : null)}}
+				{{:helper.link('Normal', 'seek-next', {'speed' : 2}, (data.selected_speed == 2)? 'selected' : null)}}
+				{{:helper.link('HYPER', 'alert', {'speed' : 3}, null, (data.selected_speed == 3)? 'redButton' : 'yellowButton')}}
+			</span>
 		</div>
 	</div>
 </div>
@@ -80,7 +85,7 @@
 					<span style="float:right">
 						{{:helper.link('Dock', 'arrowthickstop-1-e', {'dock_command' : 1}, (data.docking_status != "undocked")? 'selected' : null)}}
 						{{:helper.link('Undock', 'arrowthickstop-1-e', {'undock_command' : 1}, (data.docking_status != "docked")? 'selected' : null)}}
-					</div>
+					</span>
 					
 				</div>
 
@@ -96,7 +101,7 @@
 			<span style="float:right">
 				{{:helper.link('Cloak', 'radio-off', {'cloak_command' : 1}, (data.cloaked == 1)? 'selected' : null)}}
 				{{:helper.link('Uncloak', 'radio-on', {'uncloak_command' : 1}, (data.cloaked == 0)? 'selected' : null)}}
-			</div>
+			</span>
 		</div>
 	{{/if}}
 	
@@ -108,7 +113,7 @@
 			<span style="float:right">
 				{{:helper.link('On', 'circle-check', {'autopilot_on_command' : 1}, (data.autopilot == 1)? 'selected' : null)}}
 				{{:helper.link('Off', 'circle-close	', {'autopilot_off_command' : 1}, (data.autopilot == 0)? 'selected' : null)}}
-			</div>
+			</span>
 		</div>
 	{{/if}}
 	
