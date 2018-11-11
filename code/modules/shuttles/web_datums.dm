@@ -254,12 +254,9 @@
 		return FALSE
 	future_destination = R.get_other_side(current_destination)
 
-//	var/travel_time = R.travel_time * my_shuttle.flight_time_modifier * 2 // Autopilot is less efficent than having someone flying manually.
-	var/thrust_power = 100 // Todo: Get all thruster mountpoints and add them up here.
-	if(thrust_power <= 0) // Avoid a division by zero error.
-		return FALSE
-
 	var/travel_time = my_shuttle.calculate_travel_time(R)
+	if(isnull(travel_time)) // Our engines don't work or something.
+		return FALSE
 	if(R.interim && travel_time > 0)
 		my_shuttle.long_jump(my_shuttle.current_area, future_destination.my_area, R.interim, travel_time / 10)
 	else

@@ -81,7 +81,7 @@
 
 	speed *= get_selected_speed_modifier() // Apply modifier from going fast/slow.
 
-	if(speed <= 0) // Avoid a division by zero error.
+	if(speed <= 0) // Avoid a division by zero error, as well as reject movement commands.
 		return null
 
 	// Superior FTL drives reduce the distance from the destination.
@@ -486,6 +486,9 @@
 		WS.adjust_autopilot(FALSE)
 
 	if(href_list["speed"])
+		if(WS.autopilot)
+			to_chat(usr, span("warning", "The autopilot is locked to the lowest speed setting."))
+			return
 		WS.adjust_speed(text2num(href_list["speed"]))
 
 	if(href_list["traverse"])
@@ -520,7 +523,7 @@
 		var/travel_time = WS.calculate_travel_time(new_route)
 
 		if(isnull(travel_time)) // We literally have no engines or something.
-			to_chat(usr, span("warning", "[WS.visible_name] is inoperable."))
+			to_chat(usr, span("warning", "[WS.visible_name] is inoperable. Check engines or FTL drive."))
 			return
 
 		if(new_route.interim && travel_time)

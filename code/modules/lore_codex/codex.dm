@@ -46,3 +46,10 @@
 	icon_state = "corp_regs"
 	root_type = /datum/lore/codex/category/main_corp_regs
 	throwforce = 5 // Throw the book at 'em.
+
+/obj/item/weapon/book/codex/shuttle_owners_manual
+	name = "Shuttle Owner's Manual"
+	desc = "An owner's manual for the type of shuttles that NT operates for this station. It contains instructions on how to \
+	assemble, disassemble, troubleshoot, and maintain the shuttle's various components. Flying lessons sold seperately."
+	icon_state = "shuttle_manual"
+	root_type = /datum/lore/codex/category/main_shuttle

@@ -12,9 +12,11 @@
 /obj/structure/shuttle_component/thruster
 	name = "thruster"
 	desc = "Point away from face."
-	icon_state = "burst_s"
+	icon_state = "thruster"
 	max_integrity = 100
 	resilience = 10
+	active_overlay = "thruster_overlay_active"
+	operable_overlay = "thuster_overlay_default"
 	var/thrust_power = 0	// Measured in AUD, or Arbitrary Unit of Distance.
 	var/efficiency = 0.1		// Thrusters can be more or less efficent with their power consumption. Generally the faster thrusters are more wasteful.
 
@@ -62,6 +64,7 @@
 	desc = "This thruster adopts the 'MORE POWER' method of achieving massive amounts of thrust. \
 	It certainly works for this model, however it also consumes massive amounts of power, and will \
 	require much more maintenance."
+	operable_overlay = "thuster_overlay_overclocked"
 	thrust_power = 45
 	efficiency = 0.4
 	max_integrity = 40

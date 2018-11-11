@@ -1704,6 +1704,7 @@
 #include "code\modules\lore_codex\robutt_data\bybrand.dm"
 #include "code\modules\lore_codex\robutt_data\main_robutts.dm"
 #include "code\modules\lore_codex\robutt_data\more.dm"
+#include "code\modules\lore_codex\shuttle_data\main.dm"
 #include "code\modules\maps\tg\dmm_suite.dm"
 #include "code\modules\maps\tg\map_template.dm"
 #include "code\modules\maps\tg\reader.dm"

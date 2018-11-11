@@ -17,8 +17,14 @@
 #define SHUTTLE_DEFAULT_THRUSTER_POWER 25
 
 // How many thrusters are on the regular shuttles.
-// Used for the below define for standardizing seconds to AUD.
+// Used for the below define for standardizing seconds to AUD. Has no physical effect otherwise.
 #define SHUTTLE_DEFAULT_THRUSTER_AMOUNT 4
 
 // Converts desired seconds to the amount of AUD needed for it to be true at default speeds.
 #define SHUTTLE_SECONDS * (SHUTTLE_DEFAULT_THRUSTER_POWER * SHUTTLE_DEFAULT_THRUSTER_AMOUNT)
+
+#define DESTINATION_FLAGS_NONE			0
+#define DESTINATION_FLAGS_ATMOSPHERIC	1 // Represents being in an area with an atmosphere. Aerodynamic hull performs best here..
+#define DESTINATION_FLAGS_SPACE			2 // The opposite of the above. Required for photovoltaic hull to function.
+#define DESTINATION_FLAGS_ASTEROID		4 // Destination is in an asteroid field. Encounters may cause a collision if care is not taken.
+#define DESTINATION_FLAGS_STORM			8
