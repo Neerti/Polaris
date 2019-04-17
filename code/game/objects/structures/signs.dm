@@ -188,6 +188,10 @@
 	..()
 	desc += " Enter at own risk!."
 
+/obj/structure/sign/warning/emitter_path
+	name = "\improper PROJECTILE PATHWAY"
+	icon_state = "turrets"
+
 /obj/structure/sign/warning/mail_delivery
 	name = "\improper MAIL DELIVERY"
 	icon_state = "mail"

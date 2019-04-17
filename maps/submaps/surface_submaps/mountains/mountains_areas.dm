@@ -123,10 +123,27 @@
 	ambience = AMBIENCE_FOREBODING
 
 /area/submap/lava_trench
-	name = "Lava Trench"
+	name = "Magma Trench"
 	ambience = AMBIENCE_LAVA
 
 /area/submap/lava_trench/outpost
 	name = "Trench Outpost"
 	requires_power = FALSE
 	icon_state = "submap2"
+
+/area/submap/old_geothermal_plant
+	name = "Magma Lake"
+	ambience = AMBIENCE_LAVA
+	forced_ambience = list('sound/ambience/lava/magma.ogg')
+	mixed_ambience = TRUE
+
+/area/submap/old_geothermal_plant/interior
+	name = "Old Geothermal Plant"
+	requires_power = FALSE // It -is- a power plant.
+	icon_state = "submap2"
+	forced_ambience = null
+
+/area/submap/old_geothermal_plant/tower
+	name = "Prismatic Tower"
+	requires_power = FALSE
+	icon_state = "submap3"

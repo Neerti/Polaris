@@ -33,6 +33,7 @@
 #include "crashedcontainmentshuttle.dmm"
 #include "deadspy.dmm"
 #include "lava_trench.dmm"
+#include "geothermal.dmm"
 #endif
 
 // The 'mountains' is the mining z-level, and has a lot of caves.
@@ -280,3 +281,9 @@
 	desc = "A medical response shuttle that went missing some time ago. So this is where they went."
 	mappath = 'maps/submaps/surface_submaps/mountains/CrashedMedShuttle1.dmm'
 	cost = 20
+
+/datum/map_template/surface/mountains/deep/geothermal
+	name = "Old Geothermal Plant"
+	desc = "An old, unmaintained plant which uses thermal energy from Sif to power... something?"
+	mappath = 'maps/submaps/surface_submaps/mountains/geothermal.dmm'
+	cost = 40

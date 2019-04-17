@@ -3,7 +3,7 @@
 /obj/structure/prop/alien
 	name = "some alien thing"
 	desc = "My description is broken, bug a developer."
-	icon = 'icons/obj/abductor.dmi'
+	icon = 'icons/obj/tesla_engine/tesla_coil.dmi'
 	density = TRUE
 	anchored = TRUE
 

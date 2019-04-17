@@ -37,6 +37,7 @@
 	var/firedoors_closed = 0
 	var/list/ambience = list()
 	var/list/forced_ambience = null
+	var/mixed_ambience = FALSE // If true, both forced_ambience and ambience can play at the same time.
 	var/sound_env = STANDARD_STATION
 	var/turf/base_turf //The base turf type of the area, which can be used to override the z-level's base turf
 	var/global/global_uid = 0
@@ -292,11 +293,12 @@ var/list/mob/living/forced_ambiance_list = new
 			L << chosen_ambiance
 		else
 			L << sound(null, channel = CHANNEL_AMBIENCE_FORCED)
-	else if(src.ambience.len && prob(35))
-		if((world.time >= L.client.time_last_ambience_played + 1 MINUTE))
-			var/sound = pick(ambience)
-			L << sound(sound, repeat = 0, wait = 0, volume = 50, channel = CHANNEL_AMBIENCE)
-			L.client.time_last_ambience_played = world.time
+	if(!forced_ambience || mixed_ambience)
+		if(src.ambience.len && prob(35))
+			if((world.time >= L.client.time_last_ambience_played + 1 MINUTE))
+				var/sound = pick(ambience)
+				L << sound(sound, repeat = 0, wait = 0, volume = 50, channel = CHANNEL_AMBIENCE)
+				L.client.time_last_ambience_played = world.time
 
 /area/proc/gravitychange(var/gravitystate = 0, var/area/A)
 	A.has_gravity = gravitystate

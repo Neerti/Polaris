@@ -299,6 +299,7 @@
 	name = "drone pod"
 	desc = "This is a pod which used to contain a drone... Or maybe it still does?"
 	icon = 'icons/obj/structures.dmi'
+	icon_state = "borg_pod_opened"
 
 /obj/machinery/recharge_station/ghost_pod_recharger/update_icon()
 	..()

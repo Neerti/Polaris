@@ -27,3 +27,10 @@
 			spawn(150) // Error! Check again in 15 seconds.
 				powernet_connection_failed = 0
 	add_avail(power_generation_rate)
+
+// Used to power the emitters.
+/obj/machinery/power/fractal_reactor/geothermal_poi
+	name = "magma energy conduit"
+	desc = "A strange conduit submerged in magma which can easily arc to other conduits."
+	icon = 'icons/obj/structures.dmi'
+	icon_state = "lava_zap"

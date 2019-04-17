@@ -28,6 +28,9 @@
 	else
 		icon_state = "[initial(icon_state)]"
 
+	for(var/obj/machinery/door/blast/puzzle/P in linked_objects)
+		P.auto_toggle()
+
 /obj/structure/prop/lock/projectile
 	name = "beam lock"
 	desc = "An esoteric object that responds to high intensity light."
@@ -51,3 +54,8 @@
 			timing = 1
 			spawn(time_limit)
 				toggle_lock()
+
+
+/obj/structure/prop/lock/projectile/geothermal
+	pixel_y = 16
+	lockID = "geothermal"

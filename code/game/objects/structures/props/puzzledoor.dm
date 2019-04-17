@@ -16,6 +16,7 @@
 	var/list/locks = list()
 	var/lockID = null
 	var/checkrange_mult = 1
+	var/auto_open = FALSE
 
 /obj/machinery/door/blast/puzzle/proc/check_locks()
 	for(var/obj/structure/prop/lock/L in locks)
@@ -90,3 +91,13 @@
 /obj/machinery/door/blast/puzzle/attack_alien(var/mob/user)
 	if(check_locks())
 		force_toggle(1, user)
+
+/obj/machinery/door/blast/puzzle/proc/auto_toggle()
+	if(!auto_open || !check_locks())
+		return
+	force_toggle(1)
+
+/obj/machinery/door/blast/puzzle/geothermal
+	name = "laser triggered door"
+	lockID = "geothermal"
+	auto_open = TRUE

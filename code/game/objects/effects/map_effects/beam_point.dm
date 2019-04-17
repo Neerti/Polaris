@@ -97,7 +97,7 @@ GLOBAL_LIST_EMPTY(all_beam_points)
 	var/datum/beam/new_beam = Beam(beam_target, beam_icon_state, beam_icon, beam_time, beam_max_distance, beam_type, beam_sleep_time)
 	my_beams += new_beam
 	if(beam_creation_sound)
-		playsound(src, beam_creation_sound, 70, 1)
+		playsound(src, beam_creation_sound, 70, 1, ignore_walls = FALSE)
 
 	return TRUE
 
@@ -113,7 +113,7 @@ GLOBAL_LIST_EMPTY(all_beam_points)
 	my_beams -= B
 	qdel(B)
 	if(beam_destruction_sound)
-		playsound(src, beam_destruction_sound, 70, 1)
+		playsound(src, beam_destruction_sound, 70, 1,  ignore_walls = FALSE)
 
 	return TRUE
 
@@ -172,6 +172,7 @@ GLOBAL_LIST_EMPTY(all_beam_points)
 
 // Turns on and off on a timer.
 /obj/effect/map_effect/beam_point/timer
+	icon_state = "beam_point_timer2"
 	use_timer = TRUE
 
 // Shocks people who touch the beam while it's on. Flicks on and off on a specific pattern.
@@ -180,10 +181,26 @@ GLOBAL_LIST_EMPTY(all_beam_points)
 	beam_type = /obj/effect/ebeam/reactive/electric
 	beam_creation_sound = 'sound/effects/lightningshock.ogg'
 	beam_destruction_sound = "sparks"
-	seek_range = 3
+	seek_range = 5
+
+/obj/effect/map_effect/beam_point/timer/electric/three_seconds
+	icon_state = "beam_point_timer3"
+	on_duration = list(3 SECONDS, 3 SECONDS, 3 SECONDS)
+	off_duration = list(4.5 SECONDS, 0.5 SECONDS, 0.5 SECONDS)
+
+/obj/effect/map_effect/beam_point/timer/electric/four_seconds
+	icon_state = "beam_point_timer4"
+	on_duration = list(4 SECONDS, 4 SECONDS, 4 SECONDS)
+	off_duration = list(6 SECONDS, 0.5 SECONDS, 0.5 SECONDS)
+
+/obj/effect/map_effect/beam_point/timer/electric/five_seconds
+	icon_state = "beam_point_timer5"
+	on_duration = list(5 SECONDS, 5 SECONDS, 5 SECONDS)
+	off_duration = list(7.5 SECONDS, 0.5 SECONDS, 0.5 SECONDS)
 
 // Is only a target for other beams to connect to.
 /obj/effect/map_effect/beam_point/end
+	icon_state = "beam_point_end"
 	max_beams = 0
 
 // Can only have one beam.

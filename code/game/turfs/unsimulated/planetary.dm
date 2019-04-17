@@ -57,6 +57,11 @@
 /turf/unsimulated/wall/planetary/sif/alt
 	temperature	= 225.15
 
+// For volcanic PoIs. Not hot enough to harm humans (because their heat tolerence in-game is huge).
+/turf/unsimulated/wall/planetary/sif/magma
+	temperature = 350.15 // +70c
+
+
 // Fairly close to Mars in terms of temperature and pressure.
 /turf/unsimulated/wall/planetary/magni
 	carbon_dioxide = 0.90998361
