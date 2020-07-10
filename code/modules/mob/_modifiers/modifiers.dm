@@ -182,6 +182,12 @@
 			return TRUE
 	return FALSE
 
+/mob/living/proc/count_modifiers_of_type(var/modifier_type)
+	. = 0
+	for(var/datum/modifier/M in modifiers)
+		if(istype(M, modifier_type))
+			.++
+
 // This displays the actual 'numbers' that a modifier is doing.  Should only be shown in OOC contexts.
 // When adding new effects, be sure to update this as well.
 /datum/modifier/proc/describe_modifier_effects()
