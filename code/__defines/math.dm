@@ -131,6 +131,12 @@
 		dec += 360
 	. = inc > dec? -dec : inc
 
+// Determines if `mid` is inbetween `start` and  `end`, inclusive. All values are in degrees.
+/proc/angle_between_two_angles(start, mid, end)
+	end = (end - start) < 0 ? end - start + 360 : end - start
+	mid = (mid - start) < 0 ? mid - start + 360 : mid - start
+	return mid <= end
+
 //A logarithm that converts an integer to a number scaled between 0 and 1.
 //Currently, this is used for hydroponics-produce sprite transforming, but could be useful for other transform functions.
 #define TRANSFORM_USING_VARIABLE(input, max) ( sin((90*(input))/(max))**2 )

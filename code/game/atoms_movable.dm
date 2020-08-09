@@ -19,6 +19,7 @@
 	var/icon_scale_x = 1 // Used to scale icons up or down horizonally in update_transform().
 	var/icon_scale_y = 1 // Used to scale icons up or down vertically in update_transform().
 	var/icon_rotation = 0 // Used to rotate icons in update_transform()
+	var/transform_animate_time = 0 // If greater than zero, transform-based adjustments (scaling, rotating) will visually occur over this time.
 	var/icon_expected_height = 32
 	var/icon_expected_width = 32
 	var/old_x = 0
@@ -563,7 +564,7 @@
 	var/matrix/M = matrix()
 	M.Scale(icon_scale_x, icon_scale_y)
 	M.Turn(icon_rotation)
-	src.transform = M
+	animate(src, transform = M, transform_animate_time)
 
 // Use this to set the object's scale.
 /atom/movable/proc/adjust_scale(new_scale_x, new_scale_y)
